@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Lint
+        run: ruff check .
+      - name: Tests
+        run: pytest
+      # The gate that gives this repo its point: the book may not print a figure
+      # the model does not produce. It runs last so a failure here is unambiguous.
+      - name: Verify the book against the model
+        run: python verify_book.py

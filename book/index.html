@@ -1,0 +1,991 @@
+<title>Project Sentinel — Sell-Side Pitch Book</title>
+
+<style>
+:root{
+  --paper:#F5F4F0; --surface:#FCFCFA; --surface-2:#EFEDE6;
+  --ink:#131A26; --ink-2:#4A5567; --ink-3:#838E9E;
+  --rule:#E2DED4; --rule-strong:#CDC6B8;
+  --navy:#1D3557; --gilt:#9C7B2E;
+  --c1:#2F5FA8; --c2:#B8862B; --c3:#008F80; --c4:#A8412F;
+  --pos:#008F80; --neg:#A8412F; --mid:#9AA3AF;
+  --band:#F0EEE7;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:"Helvetica Neue",Helvetica,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  --shadow:0 1px 2px rgba(19,26,38,.05),0 8px 24px -12px rgba(19,26,38,.12);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#0E1218; --surface:#151A22; --surface-2:#1B212B;
+    --ink:#ECEFF4; --ink-2:#A6B0BF; --ink-3:#6E7A8A;
+    --rule:#242C38; --rule-strong:#333E4D;
+    --navy:#A9C2E0; --gilt:#D6B052;
+    --c1:#4E7EC6; --c2:#B58527; --c3:#0E9584; --c4:#C6543F;
+    --pos:#0E9584; --neg:#C6543F; --mid:#5C6675;
+    --band:#1A202A;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1218; --surface:#151A22; --surface-2:#1B212B;
+  --ink:#ECEFF4; --ink-2:#A6B0BF; --ink-3:#6E7A8A;
+  --rule:#242C38; --rule-strong:#333E4D;
+  --navy:#A9C2E0; --gilt:#D6B052;
+  --c1:#4E7EC6; --c2:#B58527; --c3:#0E9584; --c4:#C6543F;
+  --pos:#0E9584; --neg:#C6543F; --mid:#5C6675;
+  --band:#1A202A;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+}
+:root[data-theme="light"]{
+  --paper:#F5F4F0; --surface:#FCFCFA; --surface-2:#EFEDE6;
+  --ink:#131A26; --ink-2:#4A5567; --ink-3:#838E9E;
+  --rule:#E2DED4; --rule-strong:#CDC6B8;
+  --navy:#1D3557; --gilt:#9C7B2E;
+  --c1:#2F5FA8; --c2:#B8862B; --c3:#008F80; --c4:#A8412F;
+  --pos:#008F80; --neg:#A8412F; --mid:#9AA3AF;
+  --band:#F0EEE7;
+  --shadow:0 1px 2px rgba(19,26,38,.05),0 8px 24px -12px rgba(19,26,38,.12);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:15px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 20px 80px}
+
+/* ── page ─────────────────────────────────────────────── */
+.page{
+  background:var(--surface); border:1px solid var(--rule);
+  border-radius:2px; box-shadow:var(--shadow);
+  margin:0 0 22px; padding:30px 34px 26px; position:relative;
+}
+.page-head{
+  display:flex; justify-content:space-between; align-items:baseline;
+  gap:16px; border-bottom:2px solid var(--navy);
+  padding-bottom:8px; margin-bottom:20px;
+}
+.page-head h2{
+  font-family:var(--serif); font-size:21px; font-weight:600;
+  margin:0; letter-spacing:-.01em; text-wrap:balance;
+}
+.eyebrow{
+  font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gilt); font-weight:700; white-space:nowrap;
+}
+.page-foot{
+  margin-top:20px; padding-top:9px; border-top:1px solid var(--rule);
+  font-size:10.5px; color:var(--ink-3); line-height:1.5;
+}
+.page-foot b{color:var(--ink-2);font-weight:600}
+
+/* ── cover ────────────────────────────────────────────── */
+.cover{
+  background:var(--navy); color:#F3F1EA; border:none;
+  padding:56px 44px 40px;
+}
+:root[data-theme="dark"] .cover,
+:root:not([data-theme="light"]) .cover{color:#F3F1EA}
+@media (prefers-color-scheme:dark){.cover{background:#16202F}}
+:root[data-theme="dark"] .cover{background:#16202F}
+:root[data-theme="light"] .cover{background:#1D3557}
+.cover .rule{height:3px;background:var(--gilt);width:74px;margin:0 0 26px}
+.cover h1{
+  font-family:var(--serif); font-size:clamp(34px,5.2vw,52px);
+  line-height:1.04; margin:0 0 14px; font-weight:600; letter-spacing:-.02em;
+  text-wrap:balance;
+}
+.cover .sub{font-size:16px;opacity:.82;max-width:56ch;margin:0 0 34px}
+.cover .meta{
+  display:flex;flex-wrap:wrap;gap:34px;
+  border-top:1px solid rgba(243,241,234,.22); padding-top:18px;
+}
+.cover .meta div{font-size:12px}
+.cover .meta .k{
+  font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  opacity:.6;display:block;margin-bottom:4px
+}
+.stamp{
+  position:absolute;top:22px;right:30px;font-size:9.5px;
+  letter-spacing:.18em;text-transform:uppercase;
+  border:1px solid rgba(243,241,234,.4);padding:5px 9px;opacity:.75
+}
+
+/* ── type ─────────────────────────────────────────────── */
+h3{
+  font-family:var(--serif);font-size:15.5px;font-weight:600;
+  margin:22px 0 9px;letter-spacing:-.005em
+}
+h3:first-child{margin-top:0}
+p{margin:0 0 11px;max-width:74ch}
+.lead{font-size:16.5px;line-height:1.5;color:var(--ink);max-width:70ch}
+.muted{color:var(--ink-2)}
+small{font-size:11.5px;color:var(--ink-3)}
+strong{font-weight:650}
+.num{font-variant-numeric:tabular-nums}
+
+/* ── tables ───────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:14px 0}
+table{
+  width:100%;border-collapse:collapse;font-size:12.8px;
+  font-variant-numeric:tabular-nums;min-width:520px
+}
+th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--rule)}
+th:first-child,td:first-child{text-align:left}
+thead th{
+  font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:700;border-bottom:1.5px solid var(--rule-strong);
+  vertical-align:bottom
+}
+tbody tr:hover{background:var(--band)}
+tr.total td{border-top:1.5px solid var(--rule-strong);border-bottom:none;font-weight:650}
+tr.sub td:first-child{padding-left:22px;color:var(--ink-2)}
+td.pos{color:var(--pos);font-weight:600}
+td.neg{color:var(--neg);font-weight:600}
+caption{
+  caption-side:top;text-align:left;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gilt);font-weight:700;padding-bottom:7px
+}
+
+/* ── grid & cards ─────────────────────────────────────── */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{
+  background:var(--surface-2);border:1px solid var(--rule);
+  border-radius:2px;padding:14px 15px
+}
+.stat .k{
+  font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:700;margin-bottom:6px
+}
+.stat .v{
+  font-family:var(--serif);font-size:27px;line-height:1;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em
+}
+.stat .n{font-size:11.5px;color:var(--ink-2);margin-top:6px;line-height:1.45}
+
+/* ── thesis list ──────────────────────────────────────── */
+ol.thesis{list-style:none;counter-reset:t;margin:6px 0 0;padding:0}
+ol.thesis li{
+  counter-increment:t;position:relative;padding:0 0 15px 44px;
+  margin-bottom:15px;border-bottom:1px solid var(--rule)
+}
+ol.thesis li:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+ol.thesis li::before{
+  content:counter(t,upper-roman);position:absolute;left:0;top:1px;
+  font-family:var(--serif);font-size:14px;color:var(--gilt);font-weight:600;
+  width:32px;text-align:right;letter-spacing:.02em
+}
+ol.thesis h4{margin:0 0 4px;font-size:14px;font-weight:650;font-family:var(--sans)}
+ol.thesis p{margin:0;font-size:13.2px;color:var(--ink-2);max-width:78ch}
+
+ul.tick{list-style:none;padding:0;margin:8px 0}
+ul.tick li{position:relative;padding:0 0 7px 18px;font-size:13.2px;color:var(--ink-2)}
+ul.tick li::before{
+  content:"";position:absolute;left:0;top:8px;width:6px;height:6px;
+  background:var(--gilt);border-radius:1px
+}
+
+/* ── football field ───────────────────────────────────── */
+.ff-row{display:grid;grid-template-columns:180px 1fr;gap:12px;align-items:center;margin-bottom:9px}
+.ff-lab{font-size:12px;color:var(--ink-2);text-align:right;line-height:1.3}
+.ff-track{position:relative;height:26px;background:var(--band);border-radius:2px}
+.ff-bar{
+  position:absolute;top:4px;height:18px;border-radius:2px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6px;font-size:10.5px;font-variant-numeric:tabular-nums;
+  color:#fff;font-weight:600;white-space:nowrap
+}
+@media(max-width:700px){.ff-row{grid-template-columns:1fr}.ff-lab{text-align:left}}
+
+/* ── bars ─────────────────────────────────────────────── */
+.bars{display:flex;gap:10px;align-items:flex-end;height:190px;margin:16px 0 6px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end}
+.bar-v{font-size:12px;font-variant-numeric:tabular-nums;font-weight:650;margin-bottom:5px}
+.bar-r{width:100%;max-width:70px;border-radius:3px 3px 0 0;min-height:3px}
+.bar-l{font-size:11px;color:var(--ink-3);margin-top:7px;text-align:center}
+
+/* ── heatmap ──────────────────────────────────────────── */
+.heat{border-collapse:separate;border-spacing:2px;min-width:520px}
+.heat td,.heat th{border:none;padding:9px 6px;text-align:center;font-size:12px}
+.heat th{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.heat td.cell{
+  border-radius:2px;font-variant-numeric:tabular-nums;font-weight:650;
+  color:#fff;cursor:default;position:relative
+}
+.heat td.cell:hover{outline:2px solid var(--ink);outline-offset:1px}
+
+/* ── legend ───────────────────────────────────────────── */
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin:10px 0 0;font-size:11.5px;color:var(--ink-2)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+
+/* ── callout ──────────────────────────────────────────── */
+.callout{
+  border-left:3px solid var(--gilt);background:var(--band);
+  padding:13px 16px;margin:16px 0;border-radius:0 2px 2px 0
+}
+.callout .t{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gilt);font-weight:700;margin-bottom:5px
+}
+.callout p{margin:0;font-size:13.4px;max-width:80ch}
+.callout p+p{margin-top:8px}
+
+/* ── tiers ────────────────────────────────────────────── */
+.tier{border:1px solid var(--rule);border-radius:2px;margin-bottom:12px;overflow:hidden}
+.tier-h{
+  background:var(--band);padding:8px 13px;display:flex;
+  justify-content:space-between;align-items:center;gap:12px;
+  border-bottom:1px solid var(--rule)
+}
+.tier-h .n{font-size:12.5px;font-weight:700}
+.tier-h .d{font-size:11px;color:var(--ink-3)}
+.tier-b{padding:11px 13px}
+.pill{
+  display:inline-block;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+  font-weight:700;padding:3px 7px;border-radius:2px;white-space:nowrap
+}
+.p-hi{background:color-mix(in srgb,var(--pos) 16%,transparent);color:var(--pos)}
+.p-md{background:color-mix(in srgb,var(--c2) 20%,transparent);color:var(--c2)}
+.p-lo{background:color-mix(in srgb,var(--neg) 15%,transparent);color:var(--neg)}
+
+/* ── timeline ─────────────────────────────────────────── */
+.tl{position:relative;padding-left:22px;margin-top:12px}
+.tl::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1.5px;background:var(--rule-strong)}
+.tl-i{position:relative;padding-bottom:15px}
+.tl-i:last-child{padding-bottom:0}
+.tl-i::before{
+  content:"";position:absolute;left:-21px;top:5px;width:9px;height:9px;
+  border-radius:50%;background:var(--surface);border:2px solid var(--gilt)
+}
+.tl-w{font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--gilt);font-weight:700}
+.tl-t{font-size:13.4px;font-weight:650;margin:2px 0 2px}
+.tl-d{font-size:12.4px;color:var(--ink-2);max-width:76ch}
+
+hr.sep{border:none;border-top:1px solid var(--rule);margin:22px 0}
+.disc{font-size:11px;color:var(--ink-3);line-height:1.6;max-width:none}
+a{color:var(--navy)}
+:focus-visible{outline:2px solid var(--gilt);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<!-- ══════════ COVER ══════════ -->
+<section class="page cover">
+  <div class="stamp">Preliminary &amp; Confidential</div>
+  <div class="rule"></div>
+  <h1>Project Sentinel</h1>
+  <p class="sub">Discussion materials for the Board of Directors regarding a potential sale of the Company — situation assessment, valuation perspectives, buyer universe and transaction structure.</p>
+  <div class="meta">
+    <div><span class="k">Prepared for</span>Board of Directors, Sentinel Compliance Systems, Inc.</div>
+    <div><span class="k">Prepared by</span>Haldane &amp; Co. · Investment Banking Division</div>
+    <div><span class="k">Date</span>24 August 2026</div>
+    <div><span class="k">Project code</span>Sentinel</div>
+  </div>
+</section>
+
+<!-- ══════════ CONTENTS ══════════ -->
+<section class="page">
+  <div class="page-head"><h2>Contents</h2><span class="eyebrow">Page 2</span></div>
+  <div class="grid g2">
+    <div>
+      <div class="tw"><table>
+        <tbody>
+          <tr><td>Executive summary and recommendation</td><td class="num">3</td></tr>
+          <tr><td>Why this transaction happens now</td><td class="num">4</td></tr>
+          <tr><td>The asset — operating and financial profile</td><td class="num">5</td></tr>
+          <tr><td>Valuation perspectives</td><td class="num">6</td></tr>
+          <tr><td>Buyer universe — tiering and evaluation</td><td class="num">7</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div>
+      <div class="tw"><table>
+        <tbody>
+          <tr><td>Ability to pay — strategic versus sponsor</td><td class="num">9</td></tr>
+          <tr><td>Illustrative merger consequences</td><td class="num">10</td></tr>
+          <tr><td>Why the dilution is structural</td><td class="num">11</td></tr>
+          <tr><td>Consideration mix and sensitivities</td><td class="num">12</td></tr>
+          <tr><td>Synergies, credit and value sharing</td><td class="num">13</td></tr>
+          <tr><td>Process design, risks and timetable</td><td class="num">14</td></tr>
+          <tr><td>Assumptions and disclaimer</td><td class="num">15</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+  <div class="page-foot">
+    <b>Note on these materials.</b> Sentinel Compliance Systems, Aegis Data Group and every counterparty named herein are fictional, as are all financial figures. This is an illustrative pitch book prepared to demonstrate sell-side analysis; it is not investment advice and does not describe any real company or transaction.
+  </div>
+</section>
+
+<!-- ══════════ EXEC SUMMARY ══════════ -->
+<section class="page">
+  <div class="page-head"><h2>Executive summary and recommendation</h2><span class="eyebrow">Page 3</span></div>
+
+  <p class="lead">We recommend the Board authorise a <strong>targeted sale process</strong> directed at six strategic acquirers, at an indicative value of <strong>$76.00 per share</strong> — a 31% premium to the unaffected price and 8.0× FY26E revenue.</p>
+
+  <div class="grid g4" style="margin:18px 0 4px">
+    <div class="card stat"><div class="k">Indicative price</div><div class="v"><span data-model="deal.offer_price" data-fmt="money2">$76.00</span></div><div class="n">31.0% premium to $58.00 unaffected</div></div>
+    <div class="card stat"><div class="k">Equity value</div><div class="v">$3.95bn</div><div class="n">$4.18bn enterprise value</div></div>
+    <div class="card stat"><div class="k">Headline multiple</div><div class="v"><span data-model="deal.ev_ebitda_fy26" data-fmt="mult1">25.2×</span></div><div class="n">FY26E EBITDA of $166m</div></div>
+    <div class="card stat"><div class="k">Post-synergy</div><div class="v"><span data-model="deal.ev_ebitda_post_synergy" data-fmt="mult1">16.0×</span></div><div class="n">Including $95m run-rate synergies</div></div>
+  </div>
+
+  <h3>The four conclusions that shape our advice</h3>
+  <ol class="thesis">
+    <li>
+      <h4>The window is open now and closes on its own</h4>
+      <p>Three of the six credible independent comparables have been acquired in twenty-four months. Sentinel is the last sizeable independent asset in regulatory reporting and trade surveillance, and scarcity is the single most valuable attribute the Company currently owns. It is not a durable one.</p>
+    </li>
+    <li>
+      <h4>This is a strategics-only process — sponsors cannot reach the price</h4>
+      <p>At $76.00 a financial sponsor underwrites to roughly a <strong>10% IRR</strong>, against a 20%+ hurdle. Sponsors only clear their hurdle at approximately today's trading price, where the Board would have no reason to transact. We recommend against a broad auction: it would import price-insensitive bidders, raise leak risk with regulated customers, and depress rather than improve outcome.</p>
+    </li>
+    <li>
+      <h4>Buyers will be dilutive on reported EPS, and that must be managed, not hidden</h4>
+      <p>Our modelled transaction is <strong>7.3% dilutive to GAAP EPS</strong> in the first full year, reaching approximate neutrality by year three. Every credible buyer will run this analysis. Our job is to arrive with the answer already framed — because, as page 11 shows, most of that dilution is not caused by the premium at all.</p>
+    </li>
+    <li>
+      <h4>Value is defended on cash earnings and synergy capacity, not headline multiple</h4>
+      <p>At 25.2× headline the asset looks expensive. At <strong>16.0× post-synergy</strong> it is squarely inside the precedent range. The bidders who can underwrite the second number are the bidders who can pay, which is why buyer selection and synergy diligence are the two workstreams that determine price.</p>
+    </li>
+  </ol>
+
+  <div class="callout">
+    <div class="t">Recommended next step</div>
+    <p>Authorise preparation of confidential materials and a management presentation, with first-round outreach to Tier 1 buyers in the week of 14 September. We would not approach Tier 2 or sponsors until first-round indications are in hand.</p>
+  </div>
+
+  <div class="page-foot"><b>Source:</b> Company management projections; Haldane &amp; Co. analysis. Unaffected price of $58.00 as at 21 August 2026. All figures illustrative.</div>
+</section>
+
+<!-- ══════════ THE STORY ══════════ -->
+<section class="page">
+  <div class="page-head"><h2>Why this transaction happens now</h2><span class="eyebrow">Page 4 · The story</span></div>
+
+  <p class="lead">A sale is not compelling because the Company is troubled. It is compelling because four independent clocks are running at once, and they will not stay aligned.</p>
+
+  <ol class="thesis" style="margin-top:16px">
+    <li>
+      <h4>The regulatory supercycle that built the Company is annualising</h4>
+      <p>The 2023–25 rulemaking wave — consolidated audit trail expansion, off-channel communications enforcement, and the T+1 settlement transition — drove three years of 20%+ growth. Those mandates are now largely implemented. Management's own plan guides FY27 organic growth to 11%, and the deceleration is arithmetic, not execution. A business is worth most when it is growing into a mandate, not after it has delivered one.</p>
+    </li>
+    <li>
+      <h4>Customers are consolidating and want one vendor, not three</h4>
+      <p>Regional bank and mid-market broker-dealer consolidation is removing roughly 4% of the addressable account base annually, and survivors are rationalising vendors. Buyers increasingly tender surveillance, regulatory reporting and communications archiving as a single lot. Sentinel is excellent at two of the three legs and absent from the third. Every quarter that persists, the Company is more likely to be a component of someone's bid than the recipient of one.</p>
+    </li>
+    <li>
+      <h4>The re-platforming bill is due, and the Company cannot fund it invisibly</h4>
+      <p>Surveillance is being rebuilt away from lexicon-and-rules toward language models that read intent. We estimate <strong>$180m over three years</strong> to remain competitive. Funded internally, that compresses EBITDA margin from 32% toward the mid-20s and takes the Company below the Rule-of-40 threshold on which its multiple depends. Inside a larger acquirer the same spend is absorbed against a far bigger revenue base and is very nearly invisible.</p>
+    </li>
+    <li>
+      <h4>The register wants an answer</h4>
+      <p>Two pre-IPO sponsors hold 22% between them, in funds now in years nine and eleven. Lock-ups expired long ago and both have signalled they will support a transaction. A register with two structurally motivated sellers is a register that eventually produces a discounted secondary block instead of a control premium.</p>
+    </li>
+    <li>
+      <h4>Buyer capacity is unusually good, and that is the part outside our control</h4>
+      <p>Strategic balance sheets are strong, investment-grade financing is open at rates that support this structure, and at least one likely bidder is under public activist pressure to deploy capital rather than accumulate it. Financing windows and activist campaigns both close without notice.</p>
+    </li>
+    <li>
+      <h4>Scarcity has already been demonstrated by others</h4>
+      <p>The acquisitions of three comparable assets since 2024 established both a price band and a strategic template. That is useful to us: precedent does the arguing. It also means the remaining buyers know exactly what they missed, which is the most productive condition in which to run a process.</p>
+    </li>
+  </ol>
+
+  <div class="page-foot"><b>Source:</b> Company management; Haldane &amp; Co. industry analysis. Addressable-account attrition based on announced regional bank consolidations.</div>
+</section>
+
+<!-- ══════════ THE ASSET ══════════ -->
+<section class="page">
+  <div class="page-head"><h2>The asset — operating and financial profile</h2><span class="eyebrow">Page 5</span></div>
+
+  <p>Sentinel Compliance Systems provides regulatory reporting, trade surveillance and best-execution analytics to mid-market broker-dealers, asset managers and regional banks. Revenue is 91% recurring, gross retention is 94% and net revenue retention is 112%.</p>
+
+  <div class="tw"><table>
+    <caption>Historical and projected financials ($m, calendarised)</caption>
+    <thead><tr><th>Metric</th><th>FY24A</th><th>FY25A</th><th>FY26E</th><th>FY27E</th><th>FY28E</th><th>FY29E</th></tr></thead>
+    <tbody>
+      <tr><td>Revenue</td><td class="num">361</td><td class="num">460</td><td class="num">520</td><td class="num">578</td><td class="num">638</td><td class="num">700</td></tr>
+      <tr class="sub"><td>Growth %</td><td class="num">27.1%</td><td class="num">27.4%</td><td class="num">13.0%</td><td class="num">11.2%</td><td class="num">10.4%</td><td class="num">9.7%</td></tr>
+      <tr><td>Gross profit</td><td class="num">276</td><td class="num">356</td><td class="num">406</td><td class="num">454</td><td class="num">503</td><td class="num">554</td></tr>
+      <tr class="sub"><td>Margin %</td><td class="num">76.5%</td><td class="num">77.4%</td><td class="num">78.1%</td><td class="num">78.5%</td><td class="num">78.8%</td><td class="num">79.1%</td></tr>
+      <tr><td>Adjusted EBITDA</td><td class="num">92</td><td class="num">133</td><td class="num">166</td><td class="num">188</td><td class="num">214</td><td class="num">242</td></tr>
+      <tr class="sub"><td>Margin %</td><td class="num">25.5%</td><td class="num">28.9%</td><td class="num">31.9%</td><td class="num">32.5%</td><td class="num">33.5%</td><td class="num">34.6%</td></tr>
+      <tr><td>Depreciation &amp; amortisation</td><td class="num">29</td><td class="num">34</td><td class="num">38</td><td class="num">42</td><td class="num">46</td><td class="num">50</td></tr>
+      <tr class="total"><td>EBIT</td><td class="num">63</td><td class="num">99</td><td class="num">128</td><td class="num">146</td><td class="num">168</td><td class="num">192</td></tr>
+      <tr><td>Rule of 40 (growth + EBITDA margin)</td><td class="num">52.6</td><td class="num">56.3</td><td class="num">44.9</td><td class="num">43.7</td><td class="num">43.9</td><td class="num">44.3</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="grid g4" style="margin-top:6px">
+    <div class="card stat"><div class="k">Net revenue retention</div><div class="v">112%</div><div class="n">Down from 121% in FY24</div></div>
+    <div class="card stat"><div class="k">Recurring revenue</div><div class="v">91%</div><div class="n">Multi-year subscription contracts</div></div>
+    <div class="card stat"><div class="k">Top-10 concentration</div><div class="v">19%</div><div class="n">No customer above 4% of revenue</div></div>
+    <div class="card stat"><div class="k">Net leverage</div><div class="v">1.4×</div><div class="n">$225m net debt / FY26E EBITDA</div></div>
+  </div>
+
+  <div class="callout">
+    <div class="t">The diligence issue we should surface first, not last</div>
+    <p>Net revenue retention has fallen nine points in two years. Management attributes this to the mandate cycle completing rather than to competitive loss, and the gross retention figure of 94% supports that reading. Every serious bidder will find this in week one. We recommend it is addressed in the management presentation with cohort data rather than left to be discovered — a surfaced issue is a negotiating position, a discovered one is a discount.</p>
+  </div>
+
+  <div class="page-foot"><b>Source:</b> Company management projections dated 8 August 2026. FY24A–FY25A audited. Adjusted EBITDA excludes stock-based compensation of $38m in FY26E.</div>
+</section>
+
+<!-- ══════════ VALUATION ══════════ -->
+<section class="page">
+  <div class="page-head"><h2>Valuation perspectives</h2><span class="eyebrow">Page 6</span></div>
+
+  <p>Each methodology answers a different question. We present them side by side rather than blended, because the divergence between them is itself the finding: <strong>the market is valuing Sentinel as a decelerating asset, while precedent transactions value it as a scarce one.</strong></p>
+
+  <div style="margin:20px 0 6px">
+    <!-- football field: scale $35 → $100 -->
+    <div class="ff-row"><div class="ff-lab">52-week trading range</div>
+      <div class="ff-track"><div class="ff-bar" style="left:9.5%;width:41.8%;background:var(--mid)"><span>$41.20</span><span>$68.40</span></div></div></div>
+    <div class="ff-row"><div class="ff-lab">Research price targets</div>
+      <div class="ff-track"><div class="ff-bar" style="left:29.2%;width:38.5%;background:var(--c1)"><span>$54.00</span><span>$79.00</span></div></div></div>
+    <div class="ff-row"><div class="ff-lab">Public comparables<br><small>16.0×–24.0× FY27E EBITDA</small></div>
+      <div class="ff-track"><div class="ff-bar" style="left:28.5%;width:44.5%;background:var(--c1)"><span>$53.52</span><span>$82.44</span></div></div></div>
+    <div class="ff-row"><div class="ff-lab">Precedent transactions<br><small>19.0×–29.0× LTM EBITDA</small></div>
+      <div class="ff-track"><div class="ff-bar" style="left:32.8%;width:49.1%;background:var(--c2)"><span>$56.33</span><span>$88.25</span></div></div></div>
+    <div class="ff-row"><div class="ff-lab">DCF — perpetuity growth<br><small>WACC 8.9%–10.8%, TGR 2.75%–3.25%</small></div>
+      <div class="ff-track"><div class="ff-bar" style="left:5.5%;width:27.2%;background:var(--c3)"><span data-model="val.dcf_perp_low" data-fmt="money2">$38.58</span><span data-model="val.dcf_perp_high" data-fmt="money2">$56.23</span></div></div></div>
+    <div class="ff-row"><div class="ff-lab">DCF — exit multiple<br><small>18.0×–22.0× terminal EBITDA</small></div>
+      <div class="ff-track"><div class="ff-bar" style="left:50.4%;width:31.5%;background:var(--c3)"><span data-model="val.dcf_exit_low" data-fmt="money2">$67.76</span><span data-model="val.dcf_exit_high" data-fmt="money2">$88.22</span></div></div></div>
+    <div class="ff-row"><div class="ff-lab">Leveraged buyout<br><small>18%–22% IRR, 5-year hold</small></div>
+      <div class="ff-track"><div class="ff-bar" style="left:18.5%;width:23.1%;background:var(--c4)"><span>$47.00</span><span>$62.00</span></div></div></div>
+    <div class="ff-row"><div class="ff-lab" style="font-weight:650;color:var(--ink)">Indicative offer</div>
+      <div class="ff-track" style="background:transparent">
+        <div style="position:absolute;left:63.1%;top:-2px;bottom:-2px;width:2px;background:var(--gilt)"></div>
+        <div style="position:absolute;left:64.5%;top:5px;font-size:11.5px;font-weight:700;color:var(--gilt);font-variant-numeric:tabular-nums">$76.00</div>
+      </div></div>
+    <div class="ff-row"><div class="ff-lab"></div>
+      <div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-3);font-variant-numeric:tabular-nums;padding-top:3px;border-top:1px solid var(--rule)">
+        <span>$35</span><span>$48</span><span>$61</span><span>$74</span><span>$87</span><span>$100</span></div></div>
+  </div>
+
+  <div class="legend">
+    <span><i style="background:var(--mid)"></i>Market observed</span>
+    <span><i style="background:var(--c1)"></i>Trading-based</span>
+    <span><i style="background:var(--c2)"></i>Transaction-based</span>
+    <span><i style="background:var(--c3)"></i>Intrinsic</span>
+    <span><i style="background:var(--c4)"></i>Financing-constrained</span>
+  </div>
+
+  <h3>Selected precedent transactions</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Date</th><th>Target</th><th>Acquirer</th><th>TEV ($m)</th><th>TEV/LTM Rev</th><th>TEV/LTM EBITDA</th><th>Premium</th></tr></thead>
+    <tbody>
+      <tr><td>Mar 2026</td><td>Verity Surveillance</td><td>Corvus Financial Technologies</td><td class="num">2,940</td><td class="num">7.4×</td><td class="num">26.1×</td><td class="num">34%</td></tr>
+      <tr><td>Nov 2025</td><td>Lattice RegTech</td><td>Meridian Exchange Holdings</td><td class="num">4,610</td><td class="num">9.1×</td><td class="num">29.0×</td><td class="num">42%</td></tr>
+      <tr><td>Jul 2025</td><td>Cardinal Reporting</td><td>Ravenswood Partners</td><td class="num">1,780</td><td class="num">6.1×</td><td class="num">21.4×</td><td class="num">27%</td></tr>
+      <tr><td>Feb 2025</td><td>Orrick Trade Systems</td><td>Aegis Data Group</td><td class="num">3,320</td><td class="num">7.8×</td><td class="num">24.8×</td><td class="num">31%</td></tr>
+      <tr><td>Sep 2024</td><td>Bellwether Compliance</td><td>Halston Software</td><td class="num">1,240</td><td class="num">5.4×</td><td class="num">19.0×</td><td class="num">22%</td></tr>
+      <tr><td>Apr 2024</td><td>Trident Analytics</td><td>Blackford Capital</td><td class="num">2,050</td><td class="num">6.6×</td><td class="num">22.7×</td><td class="num">29%</td></tr>
+      <tr class="total"><td>Median</td><td></td><td></td><td class="num" data-model="val.precedent_median_tev" data-fmt="int">2,495</td><td class="num">7.1×</td><td class="num">23.8×</td><td class="num">30%</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <div class="t">Where $76.00 sits</div>
+    <p>The indicative price is at the <strong>72nd percentile</strong> of the blended range and at 25.2× LTM EBITDA — above the precedent median of 23.8× but below the two most recent scarcity-driven trades at 26.1× and 29.0×. That positioning is deliberate: it is defensible to a bidder's board on precedent, and to our own Board as a genuine premium rather than a market-clearing price.</p>
+  </div>
+
+  <div class="page-foot"><b>Source:</b> Haldane &amp; Co. analysis; company filings. Equity values derived from enterprise value less $225m net debt, divided by 52.0m fully diluted shares (treasury stock method). All transactions illustrative.</div>
+</section>
+
+<!-- ══════════ BUYER UNIVERSE ══════════ -->
+<section class="page">
+  <div class="page-head"><h2>Buyer universe — landscape and tiering</h2><span class="eyebrow">Page 7</span></div>
+
+  <p>We screened 34 potential acquirers against four tests: <strong>strategic necessity</strong>, <strong>synergy capacity</strong>, <strong>financial ability to pay</strong>, and <strong>executability</strong> — the last covering antitrust, financing certainty and the buyer's own shareholder tolerance for dilution. Twelve survive. Only four should receive a first-round approach.</p>
+
+  <div class="tier">
+    <div class="tier-h"><span class="n">Tier 1 — Approach in first round</span><span class="d">4 buyers · highest synergy overlap and demonstrated appetite</span></div>
+    <div class="tier-b">
+      <div class="tw"><table>
+        <thead><tr><th>Buyer</th><th>Strategic logic</th><th>Synergy capacity</th><th>Ability to pay</th><th>Fit</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Aegis Data Group</strong></td><td>Owns communications archiving; Sentinel completes the three-legged tender</td><td class="num">$95m</td><td class="num">$82</td><td><span class="pill p-hi">Highest</span></td></tr>
+          <tr><td><strong>Corvus Financial Technologies</strong></td><td>Post-trade processing; surveillance is its acknowledged gap</td><td class="num">$71m</td><td class="num">$74</td><td><span class="pill p-hi">High</span></td></tr>
+          <tr><td><strong>Meridian Exchange Holdings</strong></td><td>Exchange diversifying into recurring data and analytics revenue</td><td class="num">$34m</td><td class="num">$88</td><td><span class="pill p-md">Medium</span></td></tr>
+          <tr><td><strong>Thorne Regulatory Group</strong></td><td>Sponsor-backed platform; three bolt-ons in 24 months</td><td class="num">$88m</td><td class="num">$69</td><td><span class="pill p-hi">High</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <div class="tier-h"><span class="n">Tier 2 — Second round only, if price discovery requires it</span><span class="d">4 buyers · adjacent, lower synergies, slower</span></div>
+    <div class="tier-b">
+      <div class="tw"><table>
+        <thead><tr><th>Buyer</th><th>Strategic logic</th><th>Synergy capacity</th><th>Ability to pay</th><th>Fit</th></tr></thead>
+        <tbody>
+          <tr><td>Halston Software</td><td>Horizontal GRC; would be entering a vertical it does not know</td><td class="num">$42m</td><td class="num">$66</td><td><span class="pill p-md">Medium</span></td></tr>
+          <tr><td>Northbridge Analytics</td><td>Data and analytics adjacency; would be its largest deal ever</td><td class="num">$38m</td><td class="num">$61</td><td><span class="pill p-md">Medium</span></td></tr>
+          <tr><td>Pallas Global</td><td>Compliance BPO; trades at 11× and cannot bridge the multiple</td><td class="num">$29m</td><td class="num">$54</td><td><span class="pill p-lo">Low</span></td></tr>
+          <tr><td>Kestrel Cloud</td><td>Infrastructure buyer; no distribution into this customer base</td><td class="num">$18m</td><td class="num">$49</td><td><span class="pill p-lo">Low</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <div class="tier-h"><span class="n">Tier 3 — Financial sponsors</span><span class="d">4 buyers · include for price discovery only; see page 9</span></div>
+    <div class="tier-b">
+      <div class="tw"><table>
+        <thead><tr><th>Buyer</th><th>Angle</th><th>Equity capacity</th><th>Max price at 20% IRR</th><th>Fit</th></tr></thead>
+        <tbody>
+          <tr><td>Ravenswood Partners</td><td>Vertical software specialist; owns two adjacent assets, so a genuine synergy story</td><td class="num">$2.4bn</td><td class="num">$61</td><td><span class="pill p-md">Medium</span></td></tr>
+          <tr><td>Blackford Capital</td><td>Large-cap technology buyout; no adjacency, pure financial case</td><td class="num">$3.0bn</td><td class="num">$56</td><td><span class="pill p-lo">Low</span></td></tr>
+          <tr><td>Silverline Equity</td><td>Take-private specialist, comfortable at 6.5× leverage</td><td class="num">$1.8bn</td><td class="num">$55</td><td><span class="pill p-lo">Low</span></td></tr>
+          <tr><td>Ravenswood + SWF consortium</td><td>Co-invest structure lifts the equity cheque, not the return</td><td class="num">$3.6bn</td><td class="num">$63</td><td><span class="pill p-lo">Low</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="t">The shape of the buyer list is the finding</div>
+    <p>Ability to pay correlates almost perfectly with synergy capacity, not with size or balance sheet. Meridian is the largest and best-capitalised bidder on the list and can pay $88 — but only because its currency trades at 28×, not because the asset is worth more to it. Thorne has the second-highest synergies and the lowest capacity. <strong>Price will be set by whichever buyer can combine synergy capacity with a currency that absorbs dilution</strong>, and on that test Aegis is the reference bidder throughout these materials.</p>
+  </div>
+
+  <div class="page-foot"><b>Source:</b> Haldane &amp; Co. analysis. Ability to pay is the maximum price at which the buyer remains within one turn of its stated leverage ceiling and within 10% first-year cash EPS dilution. All parties fictional.</div>
+</section>
+
+<!-- ══════════ ABILITY TO PAY ══════════ -->
+<section class="page">
+  <div class="page-head"><h2>Ability to pay — strategic versus sponsor</h2><span class="eyebrow">Page 9</span></div>
+
+  <p class="lead">The single most consequential structural fact in this process: <strong>a financial sponsor cannot reach a price the Board would accept.</strong></p>
+
+  <h3>Sponsor returns at increasing entry prices</h3>
+  <div class="tw"><table>
+    <caption>Illustrative LBO — 5-year hold, 22× exit EBITDA on $260m FY31E</caption>
+    <thead><tr><th>Entry price</th><th>Premium</th><th>Equity cheque</th><th>MOIC</th><th>IRR</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td class="num">$58.00</td><td class="num">0%</td><td class="num">$2,202m</td><td class="num">2.30×</td><td class="num pos">18.2%</td><td>Marginal — below hurdle, at a price offering no premium</td></tr>
+      <tr><td class="num">$62.00</td><td class="num">6.9%</td><td class="num">$2,410m</td><td class="num">2.10×</td><td class="num">16.0%</td><td>Below hurdle</td></tr>
+      <tr><td class="num">$66.00</td><td class="num">13.8%</td><td class="num">$2,618m</td><td class="num">1.94×</td><td class="num">14.1%</td><td>Uncompetitive</td></tr>
+      <tr><td class="num">$70.00</td><td class="num">20.7%</td><td class="num">$2,826m</td><td class="num">1.79×</td><td class="num">12.4%</td><td>Uncompetitive</td></tr>
+      <tr class="total"><td class="num">$76.00</td><td class="num">31.0%</td><td class="num">$3,138m</td><td class="num">1.62×</td><td class="num neg">10.1%</td><td>Not fundable</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div>
+      <h3>Why the sponsor case fails</h3>
+      <ul class="tick">
+        <li>At 25.2× EBITDA, debt capacity of 6.5× funds barely a quarter of the purchase price — the equity cheque exceeds $3.1bn.</li>
+        <li>The asset is a 32%-margin software business, so there is no operational turnaround to underwrite; a sponsor is buying the same plan management already owns.</li>
+        <li>Multiple expansion cannot be assumed on exit from an entry already above the precedent median.</li>
+        <li>The $180m re-platforming spend lands inside the hold period and depresses exit-year EBITDA precisely when it is being capitalised.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What this means for process design</h3>
+      <ul class="tick">
+        <li>Include two sponsors in round one for price discovery and optionality — not because they will win.</li>
+        <li>Do not build the timetable around sponsor diligence needs; strategics move faster and the calendar should reflect that.</li>
+        <li>Resist any pressure to broaden the sponsor list. Additional financial bidders add leak risk without adding price.</li>
+        <li>If no strategic engages above $70, the honest recommendation is to <strong>stand down rather than transact</strong> — a failed process at a low clearing price is worse than no process.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-foot"><b>Source:</b> Haldane &amp; Co. analysis. Assumes debt quantum capped at the lesser of 6.5× EBITDA and 55% of enterprise value; $430m cumulative free cash flow applied to debt over the hold.</div>
+</section>
+
+<!-- ══════════ MERGER MODEL ══════════ -->
+<section class="page">
+  <div class="page-head"><h2>Illustrative merger consequences — Aegis Data Group</h2><span class="eyebrow">Page 10 · Merger model</span></div>
+
+  <p>Modelled against our reference bidder. Consideration of <strong>50% cash / 50% stock</strong>, $95m of run-rate cost synergies phased 55% / 85% / 100%, and full refinancing of Sentinel's existing debt.</p>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div>
+      <div class="tw"><table>
+        <caption>Sources</caption>
+        <tbody>
+          <tr><td>Aegis common stock issued</td><td class="num" data-model="su.stock_issued" data-fmt="1dp">1,976.0</td></tr>
+          <tr><td>New Term Loan B (S+225)</td><td class="num" data-model="su.tlb" data-fmt="1dp">1,450.0</td></tr>
+          <tr><td>New senior notes (6.25%)</td><td class="num" data-model="su.notes" data-fmt="1dp">501.0</td></tr>
+          <tr><td>Sentinel balance sheet cash</td><td class="num" data-model="su.target_cash" data-fmt="1dp">95.0</td></tr>
+          <tr><td>Aegis balance sheet cash</td><td class="num" data-model="su.acquirer_cash" data-fmt="1dp">350.0</td></tr>
+          <tr class="total"><td>Total sources</td><td class="num" data-model="su.total_sources" data-fmt="1dp">4,372.0</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div>
+      <div class="tw"><table>
+        <caption>Uses</caption>
+        <tbody>
+          <tr><td>Purchase of equity (52.0m × $76.00)</td><td class="num" data-model="su.equity_purchase" data-fmt="1dp">3,952.0</td></tr>
+          <tr><td>Refinance existing Sentinel debt</td><td class="num" data-model="su.refinance_debt" data-fmt="1dp">320.0</td></tr>
+          <tr><td>Advisory, legal and other fees</td><td class="num" data-model="su.fees_expensed" data-fmt="1dp">62.0</td></tr>
+          <tr><td>Financing fees (capitalised)</td><td class="num" data-model="su.fees_financing" data-fmt="1dp">38.0</td></tr>
+          <tr class="total"><td>Total uses</td><td class="num" data-model="su.total_uses" data-fmt="1dp">4,372.0</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <h3>Purchase price allocation</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Component</th><th>$m</th><th>Life</th><th>Annual amortisation</th></tr></thead>
+    <tbody>
+      <tr><td>Developed technology</td><td class="num">550.0</td><td class="num">7 yrs</td><td class="num">78.6</td></tr>
+      <tr><td>Customer relationships</td><td class="num">450.0</td><td class="num">12 yrs</td><td class="num">37.5</td></tr>
+      <tr><td>Trade name</td><td class="num">100.0</td><td class="num">15 yrs</td><td class="num">6.7</td></tr>
+      <tr class="sub"><td>Less: Sentinel's existing amortisation replaced</td><td class="num">—</td><td></td><td class="num">(18.0)</td></tr>
+      <tr class="total"><td>Incremental intangible amortisation</td><td class="num" data-model="ppa.write_up" data-fmt="1dp">1,100.0</td><td></td><td class="num" data-model="ppa.incremental_amortisation" data-fmt="1dp">104.7</td></tr>
+      <tr><td>Deferred tax liability on write-up (24%)</td><td class="num" data-model="ppa.dtl" data-fmt="1dp">264.0</td><td></td><td class="num">—</td></tr>
+      <tr><td>Goodwill</td><td class="num" data-model="ppa.goodwill" data-fmt="1dp">2,476.0</td><td>Indefinite</td><td class="num">—</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Accretion / (dilution) to Aegis shareholders</h3>
+  <div class="tw"><table>
+    <thead><tr><th>$m unless stated</th><th>FY27E</th><th>FY28E</th><th>FY29E</th></tr></thead>
+    <tbody>
+      <tr><td>Aegis standalone EBIT</td><td class="num">1,780.0</td><td class="num">1,945.0</td><td class="num">2,120.0</td></tr>
+      <tr><td>Sentinel EBIT</td><td class="num">146.0</td><td class="num">168.0</td><td class="num">192.0</td></tr>
+      <tr><td>Run-rate synergies realised</td><td class="num">52.3</td><td class="num">80.8</td><td class="num">95.0</td></tr>
+      <tr><td>Incremental intangible amortisation</td><td class="num">(104.7)</td><td class="num">(104.7)</td><td class="num">(104.7)</td></tr>
+      <tr class="total"><td>Pro forma EBIT</td><td class="num">1,873.5</td><td class="num">2,089.0</td><td class="num">2,302.3</td></tr>
+      <tr><td>Net interest expense</td><td class="num">(354.5)</td><td class="num">(335.1)</td><td class="num">(313.4)</td></tr>
+      <tr><td>Taxes at 23.5%</td><td class="num">(357.0)</td><td class="num">(412.2)</td><td class="num">(467.4)</td></tr>
+      <tr class="total"><td>Pro forma net income</td><td class="num">1,162.0</td><td class="num">1,341.7</td><td class="num">1,521.5</td></tr>
+      <tr><td>Pro forma diluted shares (m)</td><td class="num">319.9</td><td class="num">321.4</td><td class="num">322.9</td></tr>
+      <tr class="total"><td>Pro forma GAAP EPS</td><td class="num">$3.63</td><td class="num">$4.18</td><td class="num">$4.71</td></tr>
+      <tr><td>Aegis standalone GAAP EPS</td><td class="num">$3.92</td><td class="num">$4.31</td><td class="num">$4.73</td></tr>
+      <tr class="total"><td>Accretion / (dilution) — GAAP</td><td class="num neg" data-model="FY27.accretion_pct" data-fmt="pct1paren">(7.3%)</td><td class="num neg" data-model="FY28.accretion_pct" data-fmt="pct1paren">(3.2%)</td><td class="num neg" data-model="FY29.accretion_pct" data-fmt="pct1paren">(0.3%)</td></tr>
+      <tr class="total"><td>Accretion / (dilution) — cash EPS</td><td class="num neg" data-model="FY27.cash_accretion_pct" data-fmt="pct1paren">(1.2%)</td><td class="num pos" data-model="FY28.cash_accretion_pct" data-fmt="pct1">2.1%</td><td class="num pos" data-model="FY29.cash_accretion_pct" data-fmt="pct1">4.4%</td></tr>
+      <tr><td>Pro forma net leverage</td><td class="num" data-model="FY27.leverage" data-fmt="mult2">2.64×</td><td class="num" data-model="FY28.leverage" data-fmt="mult2">2.28×</td><td class="num" data-model="FY29.leverage" data-fmt="mult2">1.96×</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="bars">
+    <div class="bar-col"><div class="bar-v neg" style="color:var(--neg)">(7.3%)</div><div class="bar-r" style="height:46%;background:var(--c4)"></div><div class="bar-l">FY27E<br>GAAP</div></div>
+    <div class="bar-col"><div class="bar-v" style="color:var(--neg)">(1.2%)</div><div class="bar-r" style="height:8%;background:var(--c4);opacity:.55"></div><div class="bar-l">FY27E<br>Cash</div></div>
+    <div class="bar-col"><div class="bar-v" style="color:var(--neg)">(3.2%)</div><div class="bar-r" style="height:20%;background:var(--c4)"></div><div class="bar-l">FY28E<br>GAAP</div></div>
+    <div class="bar-col"><div class="bar-v" style="color:var(--pos)">+2.1%</div><div class="bar-r" style="height:13%;background:var(--c3)"></div><div class="bar-l">FY28E<br>Cash</div></div>
+    <div class="bar-col"><div class="bar-v" style="color:var(--neg)">(0.3%)</div><div class="bar-r" style="height:3%;background:var(--c4)"></div><div class="bar-l">FY29E<br>GAAP</div></div>
+    <div class="bar-col"><div class="bar-v" style="color:var(--pos)">+4.4%</div><div class="bar-r" style="height:28%;background:var(--c3)"></div><div class="bar-l">FY29E<br>Cash</div></div>
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--c4)"></i>Dilutive</span>
+    <span><i style="background:var(--c3)"></i>Accretive</span>
+    <span style="color:var(--ink-3)">Bar height is proportional to absolute percentage impact</span>
+  </div>
+
+  <div class="page-foot"><b>Source:</b> Haldane &amp; Co. analysis. Cash EPS adds back all intangible amortisation on both sides, tax-effected, and is presented consistently for standalone and pro forma. Excludes $105m of one-time cost-to-achieve, phased $60m / $30m / $15m, and a $22m first-year deferred revenue write-down.</div>
+</section>
+
+<!-- ══════════ STRUCTURAL DILUTION ══════════ -->
+<section class="page">
+  <div class="page-head"><h2>Why the dilution is structural, not a function of price</h2><span class="eyebrow">Page 11 · The key exhibit</span></div>
+
+  <p class="lead">This is the exhibit we would open with in any buyer conversation. <strong>At a zero premium — at exactly today's share price — the transaction is still 4.5% dilutive to GAAP EPS.</strong></p>
+
+  <div class="tw"><table>
+    <caption>FY27E accretion / (dilution) across offer prices, synergies held at $95m</caption>
+    <thead><tr><th>Offer price</th><th>Premium to unaffected</th><th>GAAP EPS impact</th><th>Cash EPS impact</th><th>Attributable to premium</th></tr></thead>
+    <tbody>
+      <tr><td class="num">$58.00</td><td class="num">0.0%</td><td class="num neg">(4.5%)</td><td class="num pos">+1.5%</td><td class="num">—</td></tr>
+      <tr><td class="num">$62.00</td><td class="num">6.9%</td><td class="num neg">(5.2%)</td><td class="num pos">+0.9%</td><td class="num">(0.7%)</td></tr>
+      <tr><td class="num">$66.00</td><td class="num">13.8%</td><td class="num neg">(5.8%)</td><td class="num pos">+0.3%</td><td class="num">(1.3%)</td></tr>
+      <tr><td class="num">$70.00</td><td class="num">20.7%</td><td class="num neg">(6.4%)</td><td class="num neg">(0.3%)</td><td class="num">(1.9%)</td></tr>
+      <tr class="total"><td class="num">$76.00</td><td class="num">31.0%</td><td class="num neg">(7.3%)</td><td class="num neg">(1.2%)</td><td class="num">(2.8%)</td></tr>
+      <tr><td class="num">$82.00</td><td class="num">41.4%</td><td class="num neg">(8.2%)</td><td class="num neg">(2.0%)</td><td class="num">(3.7%)</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <div class="t">The mechanism, and why it matters in negotiation</div>
+    <p>Identifiable intangibles are fair-valued <em>independently of what is paid</em>. Developed technology is worth what it is worth; customer relationships are worth what they are worth. Purchase price affects <strong>goodwill</strong>, which is not amortised. So the $104.7m annual amortisation charge is the same at $58 as it is at $82 — it is a consequence of buying a software company at all, not of buying this one at a premium.</p>
+    <p>At our recommended price, <strong>62% of the first-year GAAP dilution exists before a single dollar of premium is paid.</strong> A buyer who anchors on reported EPS is therefore negotiating against its own accounting policy rather than against us. The correct frame — and the one every recent acquirer in this sector has adopted publicly — is cash EPS, on which this transaction is broadly neutral in year one and clearly accretive thereafter.</p>
+  </div>
+
+  <h3>How we would use this</h3>
+  <ul class="tick">
+    <li><strong>In first-round guidance:</strong> pre-empt it. Provide the purchase price allocation early so bidders model it correctly rather than conservatively.</li>
+    <li><strong>Against a lowball:</strong> a bidder claiming EPS dilution as the reason for a $66 indication is describing a $5.8% problem it would still have at $4.5% for free.</li>
+    <li><strong>With our own Board:</strong> expect the winning bidder's announcement to lead on cash EPS and synergies. That is not spin; it is the correct measure, and we should not be surprised by it.</li>
+  </ul>
+
+  <div class="page-foot"><b>Source:</b> Haldane &amp; Co. analysis. "Attributable to premium" is the incremental dilution relative to a transaction executed at the unaffected price on identical terms.</div>
+</section>
+
+<!-- ══════════ MIX + SENSITIVITY ══════════ -->
+<section class="page">
+  <div class="page-head"><h2>Consideration mix and sensitivities</h2><span class="eyebrow">Page 12</span></div>
+
+  <h3>Consideration mix — more stock reduces dilution</h3>
+  <p>Counterintuitive, and worth stating plainly to the Board: Aegis's earnings yield is <strong>2.4%</strong> (FY26E) while its blended after-tax cost of new debt is <strong>4.5%</strong>. Its equity is therefore the cheaper currency, and a cash-heavy structure is the more dilutive one.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>Stock consideration</th><th>Cash consideration</th><th>FY27E GAAP</th><th>FY29E GAAP</th><th>FY27E net leverage</th><th>Comment</th></tr></thead>
+    <tbody>
+      <tr><td class="num">0%</td><td class="num">100%</td><td class="num neg">(11.1%)</td><td class="num neg">(2.4%)</td><td class="num">3.49×</td><td>Maximum dilution and a likely ratings action</td></tr>
+      <tr><td class="num">25%</td><td class="num">75%</td><td class="num neg">(9.1%)</td><td class="num neg">(1.3%)</td><td class="num">3.07×</td><td>Still above stated leverage ceiling</td></tr>
+      <tr class="total"><td class="num">50%</td><td class="num">50%</td><td class="num neg">(7.3%)</td><td class="num neg">(0.3%)</td><td class="num">2.64×</td><td>Recommended — balances dilution, rating and seller certainty</td></tr>
+      <tr><td class="num">75%</td><td class="num">25%</td><td class="num neg">(5.6%)</td><td class="num pos">+0.6%</td><td class="num">2.22×</td><td>Best EPS outcome; transfers market risk to our shareholders</td></tr>
+      <tr><td class="num">100%</td><td class="num">0%</td><td class="num neg">(3.9%)</td><td class="num neg">(0.4%)</td><td class="num">1.80×</td><td>No deleveraging benefit; unattractive to our sponsors</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <div class="t">Why we still recommend 50/50 rather than the EPS-optimal 75%</div>
+    <p>Our two pre-IPO sponsors hold 22% and need liquidity, not paper. A stock-heavy structure hands them a disposal problem and invites an overhang that damages the very currency being issued. The 50/50 structure also gives the buyer a defensible deleveraging narrative — 2.64× falling to 1.96× within three years — which protects its rating and therefore its willingness to pay.</p>
+  </div>
+
+  <h3>Cash EPS sensitivity — offer price against run-rate synergies</h3>
+  <p><small>FY27E cash EPS accretion / (dilution), %. Hover any cell.</small></p>
+  <div class="tw">
+    <table class="heat">
+      <thead><tr><th style="text-align:left">Synergies</th><th>$66</th><th>$70</th><th>$74</th><th>$76</th><th>$80</th><th>$84</th></tr></thead>
+      <tbody>
+        <tr><th style="text-align:left">$55m</th>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 30%,var(--surface))" title="$66 / $55m synergies: (0.9%)">(0.9)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 48%,var(--surface))" title="$70 / $55m synergies: (1.5%)">(1.5)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 66%,var(--surface))" title="$74 / $55m synergies: (2.1%)">(2.1)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 75%,var(--surface))" title="$76 / $55m synergies: (2.4%)">(2.4)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 92%,var(--surface))" title="$80 / $55m synergies: (3.0%)">(3.0)</td>
+          <td class="cell" style="background:var(--c4)" title="$84 / $55m synergies: (3.6%)">(3.6)</td></tr>
+        <tr><th style="text-align:left">$75m</th>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 12%,var(--surface));color:var(--ink)" title="$66 / $75m synergies: (0.3%)">(0.3)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 30%,var(--surface))" title="$70 / $75m synergies: (0.9%)">(0.9)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 48%,var(--surface))" title="$74 / $75m synergies: (1.5%)">(1.5)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 58%,var(--surface))" title="$76 / $75m synergies: (1.8%)">(1.8)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 75%,var(--surface))" title="$80 / $75m synergies: (2.4%)">(2.4)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 90%,var(--surface))" title="$84 / $75m synergies: (2.9%)">(2.9)</td></tr>
+        <tr><th style="text-align:left">$95m</th>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 14%,var(--surface));color:var(--ink)" title="$66 / $95m synergies: +0.3%">+0.3</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 12%,var(--surface));color:var(--ink)" title="$70 / $95m synergies: (0.3%)">(0.3)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 30%,var(--surface))" title="$74 / $95m synergies: (0.9%)">(0.9)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 40%,var(--surface))" title="Base case — $76 / $95m synergies: (1.2%)">(1.2)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 55%,var(--surface))" title="$80 / $95m synergies: (1.7%)">(1.7)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 72%,var(--surface))" title="$84 / $95m synergies: (2.3%)">(2.3)</td></tr>
+        <tr><th style="text-align:left">$115m</th>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 34%,var(--surface))" title="$66 / $115m synergies: +0.9%">+0.9</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 14%,var(--surface));color:var(--ink)" title="$70 / $115m synergies: +0.3%">+0.3</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 8%,var(--surface));color:var(--ink)" title="$74 / $115m synergies: (0.2%)">(0.2)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 18%,var(--surface));color:var(--ink)" title="$76 / $115m synergies: (0.5%)">(0.5)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 36%,var(--surface))" title="$80 / $115m synergies: (1.1%)">(1.1)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 54%,var(--surface))" title="$84 / $115m synergies: (1.7%)">(1.7)</td></tr>
+        <tr><th style="text-align:left">$135m</th>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 56%,var(--surface))" title="$66 / $135m synergies: +1.6%">+1.6</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 38%,var(--surface))" title="$70 / $135m synergies: +1.0%">+1.0</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 18%,var(--surface));color:var(--ink)" title="$74 / $135m synergies: +0.4%">+0.4</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 8%,var(--surface));color:var(--ink)" title="$76 / $135m synergies: +0.1%">+0.1</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 18%,var(--surface));color:var(--ink)" title="$80 / $135m synergies: (0.5%)">(0.5)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 36%,var(--surface))" title="$84 / $135m synergies: (1.1%)">(1.1)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--c3)"></i>Accretive to cash EPS</span>
+    <span><i style="background:var(--c4)"></i>Dilutive to cash EPS</span>
+    <span style="color:var(--ink-3)">Values are percentages; parentheses denote dilution</span>
+  </div>
+
+  <p style="margin-top:12px"><small><strong>Reading the grid.</strong> The base case sits at $76 / $95m. Cash-EPS neutrality is reached at roughly $70 on our synergy estimate, or at $76 if a buyer can underwrite $135m. Since our Tier 1 buyers' own synergy estimates will differ from ours, this grid is the negotiation: it converts "what will you pay" into "what can you deliver".</small></p>
+
+  <div class="page-foot"><b>Source:</b> Haldane &amp; Co. analysis. GAAP accretion is dilutive across the entire grid — it would require approximately $312m of run-rate synergies to reach GAAP neutrality in FY27E, which we do not consider achievable and do not present as a target.</div>
+</section>
+
+<!-- ══════════ SYNERGIES / CREDIT / VALUE ══════════ -->
+<section class="page">
+  <div class="page-head"><h2>Synergies, credit and how the value is shared</h2><span class="eyebrow">Page 13</span></div>
+
+  <div class="grid g2">
+    <div>
+      <h3>Cost synergy build — bottom up</h3>
+      <div class="tw"><table>
+        <thead><tr><th>Source</th><th>$m</th><th>% of Sentinel opex</th></tr></thead>
+        <tbody>
+          <tr><td>Public company costs</td><td class="num">14.0</td><td class="num">100%</td></tr>
+          <tr><td>G&amp;A and back-office overlap</td><td class="num">24.0</td><td class="num">39%</td></tr>
+          <tr><td>Field sales and marketing overlap</td><td class="num">26.0</td><td class="num">20%</td></tr>
+          <tr><td>R&amp;D platform consolidation</td><td class="num">17.0</td><td class="num">19%</td></tr>
+          <tr><td>Hosting and infrastructure</td><td class="num">14.0</td><td class="num">26%</td></tr>
+          <tr class="total"><td>Run-rate cost synergies</td><td class="num">95.0</td><td class="num">18.3% of revenue</td></tr>
+        </tbody>
+      </table></div>
+      <p><small>Credible because the acquirer sells to the same buyer persona through the same channel. We would <strong>not</strong> defend this number for a Tier 2 buyer without that overlap.</small></p>
+    </div>
+    <div>
+      <h3>Revenue synergies — identified, not credited</h3>
+      <div class="tw"><table>
+        <thead><tr><th>Opportunity</th><th>Revenue</th><th>EBITDA at 60%</th></tr></thead>
+        <tbody>
+          <tr><td>Surveillance cross-sell into 4,100 archiving customers</td><td class="num">$52m</td><td class="num">$31m</td></tr>
+          <tr><td>Reporting attach to existing post-trade base</td><td class="num">$21m</td><td class="num">$13m</td></tr>
+          <tr><td>Bundled tender win-rate uplift</td><td class="num">$12m</td><td class="num">$7m</td></tr>
+          <tr class="total"><td>Total identified</td><td class="num">$85m</td><td class="num">$51m</td></tr>
+        </tbody>
+      </table></div>
+      <p><small>Deliberately excluded from every accretion figure in these materials. Revenue synergies belong in a buyer's own underwriting, not in a seller's model — presenting them as earnings invites a discount when they are challenged.</small></p>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <div class="grid g2">
+    <div>
+      <h3>Pro forma credit profile</h3>
+      <div class="tw"><table>
+        <thead><tr><th></th><th>Standalone</th><th>At close</th><th>FY28E</th><th>FY29E</th></tr></thead>
+        <tbody>
+          <tr><td>Total debt</td><td class="num">4,600</td><td class="num">6,551</td><td class="num">6,221</td><td class="num">5,851</td></tr>
+          <tr><td>Net debt</td><td class="num">3,900</td><td class="num">6,201</td><td class="num">5,871</td><td class="num">5,501</td></tr>
+          <tr><td>Net leverage</td><td class="num">2.01×</td><td class="num">2.64×</td><td class="num">2.28×</td><td class="num">1.96×</td></tr>
+          <tr><td>EBITDA / net interest</td><td class="num">8.8×</td><td class="num">6.6×</td><td class="num">7.7×</td><td class="num">9.0×</td></tr>
+          <tr><td>Indicative rating</td><td>BBB+</td><td>BBB</td><td>BBB</td><td>BBB+</td></tr>
+        </tbody>
+      </table></div>
+      <p><small>Peak leverage of 2.64× sits inside the buyer's publicly stated 3.0× ceiling, and returns below 2.0× within three years without asset sales.</small></p>
+    </div>
+    <div>
+      <h3>Who captures the value created</h3>
+      <div class="tw"><table>
+        <tbody>
+          <tr><td>Premium paid to Sentinel shareholders</td><td class="num">$936m</td></tr>
+          <tr><td>Capitalised value of cost synergies <small>(at 16× post-tax)</small></td><td class="num">$1,163m</td></tr>
+          <tr><td>Less: one-time cost to achieve</td><td class="num">(105m)</td></tr>
+          <tr class="total"><td>Net value created</td><td class="num">$1,058m</td></tr>
+          <tr><td>Retained by acquirer</td><td class="num">$122m</td></tr>
+          <tr class="total"><td>Share of synergy value ceded to seller</td><td class="num">88%</td></tr>
+        </tbody>
+      </table></div>
+      <p><small>At $76.00 the buyer transfers 88% of identified synergy value. That is a high but not unprecedented share for a scarce asset — and it is precisely why the process must be competitive. Absent competitive tension, no buyer volunteers this split.</small></p>
+    </div>
+  </div>
+
+  <h3>Contribution analysis</h3>
+  <div class="tw"><table>
+    <thead><tr><th>FY27E</th><th>Aegis</th><th>Sentinel</th><th>Sentinel %</th><th>vs. ownership</th></tr></thead>
+    <tbody>
+      <tr><td>Revenue</td><td class="num">5,190</td><td class="num">578</td><td class="num">10.0%</td><td class="num">+5.8pp</td></tr>
+      <tr><td>EBITDA</td><td class="num">2,105</td><td class="num">188</td><td class="num">8.2%</td><td class="num">+4.0pp</td></tr>
+      <tr><td>EBIT</td><td class="num">1,780</td><td class="num">146</td><td class="num">7.6%</td><td class="num">+3.4pp</td></tr>
+      <tr class="total"><td>Pro forma ownership (stock portion only)</td><td class="num">95.8%</td><td class="num">4.2%</td><td class="num">4.2%</td><td class="num">—</td></tr>
+    </tbody>
+  </table></div>
+  <p><small>Sentinel shareholders contribute 10.0% of pro forma revenue but retain only 4.2% of the combined equity — the balance having been taken in cash. This is the argument <em>against</em> a stock-heavy structure from the seller's perspective, and it should be understood before the Board endorses a higher stock component.</small></p>
+
+  <div class="page-foot"><b>Source:</b> Haldane &amp; Co. analysis. Synergy capitalisation at 16× post-tax run-rate, consistent with the post-synergy acquisition multiple.</div>
+</section>
+
+<!-- ══════════ PROCESS ══════════ -->
+<section class="page">
+  <div class="page-head"><h2>Process design, risks and timetable</h2><span class="eyebrow">Page 14</span></div>
+
+  <div class="grid g2">
+    <div>
+      <h3>Recommended process architecture</h3>
+      <ul class="tick">
+        <li><strong>Targeted, two-round process.</strong> Four Tier 1 strategics plus two sponsors for price discovery. No broad auction.</li>
+        <li><strong>No public announcement of a review.</strong> Sentinel's customers are regulated entities that consider vendor viability at renewal; a public process is a live commercial risk during the selling season.</li>
+        <li><strong>Staggered disclosure.</strong> Cohort retention data and the re-platforming plan release only at second round, under a clean team where a bidder competes directly.</li>
+        <li><strong>Pre-cleared purchase price allocation.</strong> Provide the intangibles analysis early so bidders do not model dilution conservatively and discount their price accordingly.</li>
+      </ul>
+
+      <h3>Principal risks and mitigants</h3>
+      <div class="tw"><table>
+        <thead><tr><th>Risk</th><th>Mitigant</th></tr></thead>
+        <tbody>
+          <tr><td>Change-of-control consents on 23% of ARR</td><td>Consent analysis pre-completed by counsel; identify the 40 contracts that matter</td></tr>
+          <tr><td>Antitrust review where a bidder holds an overlapping surveillance product</td><td>Pre-signing HSR analysis; require a hell-or-high-water covenant from Corvus specifically</td></tr>
+          <tr><td>FCA change-in-control approval for the UK entity</td><td>Six to twelve weeks; run in parallel, not sequentially</td></tr>
+          <tr><td>Leak during a compressed selling season</td><td>Small bidder list; single point of contact; pre-drafted holding statement</td></tr>
+          <tr><td>Key-person risk on the founder-CEO</td><td>Retention and rollover discussed only after price is established, never before</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div>
+      <h3>Indicative timetable — 14 weeks to signing</h3>
+      <div class="tl">
+        <div class="tl-i"><div class="tl-w">Weeks 1–3</div><div class="tl-t">Preparation</div><div class="tl-d">Confidential information presentation, management presentation rehearsal, data room population, consent analysis.</div></div>
+        <div class="tl-i"><div class="tl-w">Week 4</div><div class="tl-t">First-round outreach</div><div class="tl-d">Tier 1 approach at principal level. NDAs executed; CIP distributed.</div></div>
+        <div class="tl-i"><div class="tl-w">Weeks 5–7</div><div class="tl-t">First-round diligence</div><div class="tl-d">Management presentations, initial Q&amp;A, synergy discussions held individually.</div></div>
+        <div class="tl-i"><div class="tl-w">Week 8</div><div class="tl-t">Indications of interest</div><div class="tl-d">Non-binding indications with price range, structure, conditionality and financing evidence.</div></div>
+        <div class="tl-i"><div class="tl-w">Weeks 9–12</div><div class="tl-t">Second round</div><div class="tl-d">Two or three bidders. Full data room, clean team on customer data, mark-up of the draft agreement.</div></div>
+        <div class="tl-i"><div class="tl-w">Week 13</div><div class="tl-t">Final bids</div><div class="tl-d">Binding offers with fully negotiated documentation and committed financing.</div></div>
+        <div class="tl-i"><div class="tl-w">Week 14</div><div class="tl-t">Board approval and signing</div><div class="tl-d">Fairness opinion delivered; announcement pre-market with synergy and cash EPS framing agreed with the buyer.</div></div>
+      </div>
+
+      <div class="callout" style="margin-top:18px">
+        <div class="t">Board process note</div>
+        <p>Once the Board determines that a sale is likely, its duty shifts toward obtaining the best reasonably available value. We recommend contemporaneous minuting of the rationale for the targeted list, and that any bidder relationship involving management rollover be handled by independent directors from first contact.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-foot"><b>Source:</b> Haldane &amp; Co. Timetable assumes no second-request antitrust review. Regulatory approvals may extend the period between signing and completion by three to six months.</div>
+</section>
+
+<!-- ══════════ APPENDIX ══════════ -->
+<section class="page">
+  <div class="page-head"><h2>Key assumptions and disclaimer</h2><span class="eyebrow">Page 15 · Appendix</span></div>
+
+  <div class="grid g3">
+    <div>
+      <h3>Target</h3>
+      <div class="tw"><table><tbody>
+        <tr><td>Unaffected price</td><td class="num">$58.00</td></tr>
+        <tr><td>Fully diluted shares</td><td class="num">52.0m</td></tr>
+        <tr><td>Gross debt / cash</td><td class="num">320 / 95</td></tr>
+        <tr><td>Tax rate</td><td class="num">24.0%</td></tr>
+      </tbody></table></div>
+    </div>
+    <div>
+      <h3>Acquirer</h3>
+      <div class="tw"><table><tbody>
+        <tr><td>Share price</td><td class="num">$148.00</td></tr>
+        <tr><td>Diluted shares FY27E</td><td class="num">306.5m</td></tr>
+        <tr><td>Existing debt at 5.40%</td><td class="num">4,600</td></tr>
+        <tr><td>Tax rate</td><td class="num">23.0%</td></tr>
+      </tbody></table></div>
+    </div>
+    <div>
+      <h3>Transaction</h3>
+      <div class="tw"><table><tbody>
+        <tr><td>Term Loan B</td><td class="num">5.75%</td></tr>
+        <tr><td>Senior notes</td><td class="num">6.25%</td></tr>
+        <tr><td>Cash yield foregone</td><td class="num">4.00%</td></tr>
+        <tr><td>Pro forma tax rate</td><td class="num">23.5%</td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+
+  <h3>Discount rate build (DCF)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Component</th><th>Low</th><th>High</th><th>Basis</th></tr></thead>
+    <tbody>
+      <tr><td>Risk-free rate</td><td class="num">4.15%</td><td class="num">4.15%</td><td>10-year government yield</td></tr>
+      <tr><td>Equity risk premium</td><td class="num">5.00%</td><td class="num">5.75%</td><td>Long-run supply-side estimate</td></tr>
+      <tr><td>Levered beta</td><td class="num">1.05</td><td class="num">1.25</td><td>Peer median, relevered at target capital structure</td></tr>
+      <tr><td>Size premium</td><td class="num">0.35%</td><td class="num">0.60%</td><td>Mid-cap decile</td></tr>
+      <tr><td>After-tax cost of debt</td><td class="num">3.99%</td><td class="num">3.99%</td><td>5.25% pre-tax at 24%</td></tr>
+      <tr class="total"><td>WACC</td><td class="num">9.00%</td><td class="num">10.50%</td><td>At 15% target debt weighting</td></tr>
+    </tbody>
+  </table></div>
+
+  <hr class="sep">
+
+  <p class="disc"><strong>Important notice.</strong> These materials are an illustrative demonstration of sell-side merger and acquisition analysis. <strong>Sentinel Compliance Systems, Inc., Aegis Data Group and every other company, transaction, price and financial figure appearing in this document are fictional and were constructed for this exercise.</strong> Nothing herein describes, or is intended to describe, any real company, security or transaction.</p>
+
+  <p class="disc">Haldane &amp; Co. is a fictional advisory firm. These materials are not, and must not be relied upon as, investment advice, a recommendation to buy or sell any security, a fairness opinion, or an offer or solicitation of any kind. They have not been prepared in accordance with any regulatory standard applicable to investment research or to financial promotions, and no regulated entity has reviewed or approved them.</p>
+
+  <p class="disc">All projections are illustrative and depend on assumptions that would not hold in practice. Merger consequences analysis is presented before one-time costs to achieve and excludes purchase accounting effects other than those explicitly identified. Accretion and dilution figures do not constitute a forecast of any company's earnings per share.</p>
+
+  <div class="page-foot"><b>Haldane &amp; Co. · Investment Banking Division</b> · Project Sentinel · 24 August 2026 · Preliminary and confidential · Page 15 of 15</div>
+</section>
+
+</div>
