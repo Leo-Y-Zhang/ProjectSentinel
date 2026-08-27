@@ -5,9 +5,16 @@ on:
     branches: [main]
   pull_request:
 
+# Least privilege: these jobs only ever read the checkout. Declared
+# explicitly so the workflow keeps its own floor even if the repository
+# default token permission is widened later.
+permissions:
+  contents: read
+
 jobs:
   gate:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
