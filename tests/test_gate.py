@@ -33,11 +33,29 @@ class TestFormatting:
     def test_accretion_renders_without_parentheses(self):
         assert verify_book.render(4.39, "pct1paren") == "4.4%"
 
+    def test_the_mix_table_marks_accretion_with_an_explicit_plus(self):
+        assert verify_book.render(-5.624, "pct1signed") == "(5.6%)"
+        assert verify_book.render(0.5685, "pct1signed") == "+0.6%"
+
+    def test_the_heat_grid_prints_no_unit(self):
+        assert verify_book.render(-0.9431, "signed1") == "(0.9)"
+        assert verify_book.render(0.3108, "signed1") == "+0.3"
+
     def test_multiples_and_money(self):
         assert verify_book.render(25.16, "mult1") == "25.2x"
         assert verify_book.render(2.6440, "mult2") == "2.64x"
         assert verify_book.render(76.0, "money2") == "$76.00"
         assert verify_book.render(2495.0, "int") == "2,495"
+        assert verify_book.render(30.0, "pct0") == "30%"
+        assert verify_book.render(2202.0, "money0m") == "$2,202m"
+        assert verify_book.render(8.886, "pct2") == "8.89%"
+
+    def test_a_cost_prints_as_a_deduction_without_losing_its_sign(self):
+        """net_interest is a positive number in the model and a bracketed
+        deduction on the page. If it ever went the other way the page would have
+        to print it without brackets, so the gate still sees a sign flip."""
+        assert verify_book.render(354.53, "paren1") == "(354.5)"
+        assert verify_book.render(-354.53, "paren1") == "354.5"
 
     def test_an_unknown_format_is_refused(self):
         with pytest.raises(ValueError):
@@ -90,7 +108,49 @@ class TestGateBehaviour:
 class TestCoverage:
     def test_the_gate_checks_a_meaningful_number_of_figures(self):
         html = BOOK.read_text(encoding="utf-8")
-        assert html.count('data-model="') >= 25
+        assert html.count('data-model="') >= 174
+
+    def test_the_cash_eps_grid_is_gated_cell_by_cell(self):
+        """The exhibit the book calls the negotiation. Every cell of it: for two
+        months it was the largest untagged block in the book, computed by a
+        function nothing referenced, which is precisely the drift this gate
+        exists to catch."""
+        import re
+
+        from sentinel.exhibits import PRICE_GRID, SYNERGY_GRID
+        html = BOOK.read_text(encoding="utf-8")
+        tagged = set(re.findall(r'data-model="(grid\.[^"]+)"', html))
+        assert tagged == {f"grid.s{int(s)}.px{int(p)}"
+                          for s in SYNERGY_GRID for p in PRICE_GRID}
+
+    def test_the_precedent_table_is_gated_row_by_row(self):
+        import re
+
+        from sentinel.valuation import PRECEDENTS
+        html = BOOK.read_text(encoding="utf-8")
+        tagged = set(re.findall(r'data-model="(prec\.[^"]+)"', html))
+        assert tagged == {f"prec.{i}.{col}" for i in range(len(PRECEDENTS))
+                          for col in ("tev", "ev_rev", "ev_ebitda", "premium_pct")}
+
+    def test_no_gated_figure_is_repeated_in_a_tooltip(self):
+        """A number copied into a title attribute is outside the gate: the tag
+        regex reads element text only, so the copy could drift away from the
+        cell it annotates. The heat-grid tooltips name the coordinates instead."""
+        import re
+
+        html = BOOK.read_text(encoding="utf-8")
+        titles = re.findall(r'<td\b[^>]*\btitle="([^"]*)"[^>]*data-model=', html)
+        assert titles, "anchor for this test was not found"
+        assert not [t for t in titles if re.search(r"\d\.\d", t)]
+
+    def test_the_readme_publishes_the_count_the_gate_actually_checks(self):
+        """The README states how many figures are gated. That is a claim about
+        this repository like any other, so it is checked here rather than
+        maintained by hand -- it was wrong by a factor of three before."""
+        html = BOOK.read_text(encoding="utf-8")
+        readme = (REPO / "README.md").read_text(encoding="utf-8")
+        count = html.count('data-model="')
+        assert f"{count} figures" in readme
 
     def test_every_tagged_key_exists_in_the_model(self):
         import re

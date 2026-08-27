@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "project-sentinel"
 version = "1.0.0"
-description = "A sell-side M&A pitch book whose every figure is generated from a tested model"
+description = "A sell-side M&A pitch book whose analytical exhibits are generated from a tested model and gated against it"
 requires-python = ">=3.11"
 dependencies = []
 

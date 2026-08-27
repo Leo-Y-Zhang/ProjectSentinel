@@ -43,11 +43,30 @@ def render(value: float, fmt: str | None) -> str:
         return f"{round(value):,}"
     if fmt == "money2":
         return f"${value:,.2f}"
+    if fmt == "money0m":
+        return f"${value:,.0f}m"
+    if fmt == "paren1":
+        # A cost the model states as a positive number, printed as a deduction.
+        # The sign is not thrown away: a model value that turned negative would
+        # have to print without parentheses, so a sign flip still fails here.
+        return f"({value:,.1f})" if value > 0 else f"{-value:,.1f}"
+    if fmt == "pct0":
+        return f"{round(value):,}%"
+    if fmt == "pct2":
+        return f"{value:.2f}%"
     if fmt == "pct1":
         return f"{value:.1f}%"
     if fmt == "pct1paren":
         # Accounting convention: dilution shown in parentheses, no sign.
         return f"({abs(value):.1f}%)" if value < 0 else f"{value:.1f}%"
+    if fmt == "pct1signed":
+        # Same convention, but accretion carries an explicit plus, because these
+        # tables are read for the sign first and the magnitude second.
+        return f"({abs(value):.1f}%)" if value < 0 else f"+{value:.1f}%"
+    if fmt == "signed1":
+        # The heat grid prints no unit: its caption and legend carry it, and
+        # repeating "%" in thirty cells makes the sign harder to scan.
+        return f"({abs(value):.1f})" if value < 0 else f"+{value:.1f}"
     if fmt == "mult1":
         return f"{value:,.1f}x"
     if fmt == "mult2":

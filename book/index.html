@@ -452,7 +452,7 @@ a{color:var(--navy)}
       <div class="ff-track"><div class="ff-bar" style="left:28.5%;width:44.5%;background:var(--c1)"><span>$53.52</span><span>$82.44</span></div></div></div>
     <div class="ff-row"><div class="ff-lab">Precedent transactions<br><small>19.0×–29.0× LTM EBITDA</small></div>
       <div class="ff-track"><div class="ff-bar" style="left:32.8%;width:49.1%;background:var(--c2)"><span>$56.33</span><span>$88.25</span></div></div></div>
-    <div class="ff-row"><div class="ff-lab">DCF — perpetuity growth<br><small>WACC 8.9%–10.8%, TGR 2.75%–3.25%</small></div>
+    <div class="ff-row"><div class="ff-lab">DCF — perpetuity growth<br><small>WACC <span data-model="wacc.low_pct" data-fmt="pct1">8.9%</span>–<span data-model="wacc.high_pct" data-fmt="pct1">10.7%</span>, TGR 2.75%–3.25%</small></div>
       <div class="ff-track"><div class="ff-bar" style="left:5.5%;width:27.2%;background:var(--c3)"><span data-model="val.dcf_perp_low" data-fmt="money2">$38.58</span><span data-model="val.dcf_perp_high" data-fmt="money2">$56.23</span></div></div></div>
     <div class="ff-row"><div class="ff-lab">DCF — exit multiple<br><small>18.0×–22.0× terminal EBITDA</small></div>
       <div class="ff-track"><div class="ff-bar" style="left:50.4%;width:31.5%;background:var(--c3)"><span data-model="val.dcf_exit_low" data-fmt="money2">$67.76</span><span data-model="val.dcf_exit_high" data-fmt="money2">$88.22</span></div></div></div>
@@ -480,13 +480,13 @@ a{color:var(--navy)}
   <div class="tw"><table>
     <thead><tr><th>Date</th><th>Target</th><th>Acquirer</th><th>TEV ($m)</th><th>TEV/LTM Rev</th><th>TEV/LTM EBITDA</th><th>Premium</th></tr></thead>
     <tbody>
-      <tr><td>Mar 2026</td><td>Verity Surveillance</td><td>Corvus Financial Technologies</td><td class="num">2,940</td><td class="num">7.4×</td><td class="num">26.1×</td><td class="num">34%</td></tr>
-      <tr><td>Nov 2025</td><td>Lattice RegTech</td><td>Meridian Exchange Holdings</td><td class="num">4,610</td><td class="num">9.1×</td><td class="num">29.0×</td><td class="num">42%</td></tr>
-      <tr><td>Jul 2025</td><td>Cardinal Reporting</td><td>Ravenswood Partners</td><td class="num">1,780</td><td class="num">6.1×</td><td class="num">21.4×</td><td class="num">27%</td></tr>
-      <tr><td>Feb 2025</td><td>Orrick Trade Systems</td><td>Aegis Data Group</td><td class="num">3,320</td><td class="num">7.8×</td><td class="num">24.8×</td><td class="num">31%</td></tr>
-      <tr><td>Sep 2024</td><td>Bellwether Compliance</td><td>Halston Software</td><td class="num">1,240</td><td class="num">5.4×</td><td class="num">19.0×</td><td class="num">22%</td></tr>
-      <tr><td>Apr 2024</td><td>Trident Analytics</td><td>Blackford Capital</td><td class="num">2,050</td><td class="num">6.6×</td><td class="num">22.7×</td><td class="num">29%</td></tr>
-      <tr class="total"><td>Median</td><td></td><td></td><td class="num" data-model="val.precedent_median_tev" data-fmt="int">2,495</td><td class="num">7.1×</td><td class="num">23.8×</td><td class="num">30%</td></tr>
+      <tr><td>Mar 2026</td><td>Verity Surveillance</td><td>Corvus Financial Technologies</td><td class="num" data-model="prec.0.tev" data-fmt="int">2,940</td><td class="num" data-model="prec.0.ev_rev" data-fmt="mult1">7.4×</td><td class="num" data-model="prec.0.ev_ebitda" data-fmt="mult1">26.1×</td><td class="num" data-model="prec.0.premium_pct" data-fmt="pct0">34%</td></tr>
+      <tr><td>Nov 2025</td><td>Lattice RegTech</td><td>Meridian Exchange Holdings</td><td class="num" data-model="prec.1.tev" data-fmt="int">4,610</td><td class="num" data-model="prec.1.ev_rev" data-fmt="mult1">9.1×</td><td class="num" data-model="prec.1.ev_ebitda" data-fmt="mult1">29.0×</td><td class="num" data-model="prec.1.premium_pct" data-fmt="pct0">42%</td></tr>
+      <tr><td>Jul 2025</td><td>Cardinal Reporting</td><td>Ravenswood Partners</td><td class="num" data-model="prec.2.tev" data-fmt="int">1,780</td><td class="num" data-model="prec.2.ev_rev" data-fmt="mult1">6.1×</td><td class="num" data-model="prec.2.ev_ebitda" data-fmt="mult1">21.4×</td><td class="num" data-model="prec.2.premium_pct" data-fmt="pct0">27%</td></tr>
+      <tr><td>Feb 2025</td><td>Orrick Trade Systems</td><td>Aegis Data Group</td><td class="num" data-model="prec.3.tev" data-fmt="int">3,320</td><td class="num" data-model="prec.3.ev_rev" data-fmt="mult1">7.8×</td><td class="num" data-model="prec.3.ev_ebitda" data-fmt="mult1">24.8×</td><td class="num" data-model="prec.3.premium_pct" data-fmt="pct0">31%</td></tr>
+      <tr><td>Sep 2024</td><td>Bellwether Compliance</td><td>Halston Software</td><td class="num" data-model="prec.4.tev" data-fmt="int">1,240</td><td class="num" data-model="prec.4.ev_rev" data-fmt="mult1">5.4×</td><td class="num" data-model="prec.4.ev_ebitda" data-fmt="mult1">19.0×</td><td class="num" data-model="prec.4.premium_pct" data-fmt="pct0">22%</td></tr>
+      <tr><td>Apr 2024</td><td>Trident Analytics</td><td>Blackford Capital</td><td class="num" data-model="prec.5.tev" data-fmt="int">2,050</td><td class="num" data-model="prec.5.ev_rev" data-fmt="mult1">6.6×</td><td class="num" data-model="prec.5.ev_ebitda" data-fmt="mult1">22.7×</td><td class="num" data-model="prec.5.premium_pct" data-fmt="pct0">29%</td></tr>
+      <tr class="total"><td>Median</td><td></td><td></td><td class="num" data-model="val.precedent_median_tev" data-fmt="int">2,495</td><td class="num" data-model="val.precedent_median_ev_revenue" data-fmt="mult1">7.0×</td><td class="num" data-model="val.precedent_median_ev_ebitda" data-fmt="mult1">23.8×</td><td class="num" data-model="val.precedent_median_premium_pct" data-fmt="pct0">30%</td></tr>
     </tbody>
   </table></div>
 
@@ -568,11 +568,11 @@ a{color:var(--navy)}
     <caption>Illustrative LBO — 5-year hold, 22× exit EBITDA on $260m FY31E</caption>
     <thead><tr><th>Entry price</th><th>Premium</th><th>Equity cheque</th><th>MOIC</th><th>IRR</th><th>Verdict</th></tr></thead>
     <tbody>
-      <tr><td class="num">$58.00</td><td class="num">0%</td><td class="num">$2,202m</td><td class="num">2.30×</td><td class="num pos">18.2%</td><td>Marginal — below hurdle, at a price offering no premium</td></tr>
-      <tr><td class="num">$62.00</td><td class="num">6.9%</td><td class="num">$2,410m</td><td class="num">2.10×</td><td class="num">16.0%</td><td>Below hurdle</td></tr>
-      <tr><td class="num">$66.00</td><td class="num">13.8%</td><td class="num">$2,618m</td><td class="num">1.94×</td><td class="num">14.1%</td><td>Uncompetitive</td></tr>
-      <tr><td class="num">$70.00</td><td class="num">20.7%</td><td class="num">$2,826m</td><td class="num">1.79×</td><td class="num">12.4%</td><td>Uncompetitive</td></tr>
-      <tr class="total"><td class="num">$76.00</td><td class="num">31.0%</td><td class="num">$3,138m</td><td class="num">1.62×</td><td class="num neg">10.1%</td><td>Not fundable</td></tr>
+      <tr><td class="num">$58.00</td><td class="num">0%</td><td class="num" data-model="lbo.px58.equity" data-fmt="money0m">$2,202m</td><td class="num" data-model="lbo.px58.moic" data-fmt="mult2">2.30×</td><td class="num pos" data-model="lbo.px58.irr_pct" data-fmt="pct1">18.2%</td><td>Marginal — below hurdle, at a price offering no premium</td></tr>
+      <tr><td class="num">$62.00</td><td class="num">6.9%</td><td class="num" data-model="lbo.px62.equity" data-fmt="money0m">$2,410m</td><td class="num" data-model="lbo.px62.moic" data-fmt="mult2">2.10×</td><td class="num" data-model="lbo.px62.irr_pct" data-fmt="pct1">16.0%</td><td>Below hurdle</td></tr>
+      <tr><td class="num">$66.00</td><td class="num">13.8%</td><td class="num" data-model="lbo.px66.equity" data-fmt="money0m">$2,618m</td><td class="num" data-model="lbo.px66.moic" data-fmt="mult2">1.94×</td><td class="num" data-model="lbo.px66.irr_pct" data-fmt="pct1">14.1%</td><td>Uncompetitive</td></tr>
+      <tr><td class="num">$70.00</td><td class="num">20.7%</td><td class="num" data-model="lbo.px70.equity" data-fmt="money0m">$2,826m</td><td class="num" data-model="lbo.px70.moic" data-fmt="mult2">1.79×</td><td class="num" data-model="lbo.px70.irr_pct" data-fmt="pct1">12.4%</td><td>Uncompetitive</td></tr>
+      <tr class="total"><td class="num">$76.00</td><td class="num">31.0%</td><td class="num" data-model="lbo.px76.equity" data-fmt="money0m">$3,138m</td><td class="num" data-model="lbo.px76.moic" data-fmt="mult2">1.62×</td><td class="num neg" data-model="lbo.px76.irr_pct" data-fmt="pct1">10.1%</td><td>Not fundable</td></tr>
     </tbody>
   </table></div>
 
@@ -638,10 +638,10 @@ a{color:var(--navy)}
   <div class="tw"><table>
     <thead><tr><th>Component</th><th>$m</th><th>Life</th><th>Annual amortisation</th></tr></thead>
     <tbody>
-      <tr><td>Developed technology</td><td class="num">550.0</td><td class="num">7 yrs</td><td class="num">78.6</td></tr>
-      <tr><td>Customer relationships</td><td class="num">450.0</td><td class="num">12 yrs</td><td class="num">37.5</td></tr>
-      <tr><td>Trade name</td><td class="num">100.0</td><td class="num">15 yrs</td><td class="num">6.7</td></tr>
-      <tr class="sub"><td>Less: Sentinel's existing amortisation replaced</td><td class="num">—</td><td></td><td class="num">(18.0)</td></tr>
+      <tr><td>Developed technology</td><td class="num" data-model="ppa.intangible0.value" data-fmt="1dp">550.0</td><td class="num">7 yrs</td><td class="num" data-model="ppa.intangible0.amortisation" data-fmt="1dp">78.6</td></tr>
+      <tr><td>Customer relationships</td><td class="num" data-model="ppa.intangible1.value" data-fmt="1dp">450.0</td><td class="num">12 yrs</td><td class="num" data-model="ppa.intangible1.amortisation" data-fmt="1dp">37.5</td></tr>
+      <tr><td>Trade name</td><td class="num" data-model="ppa.intangible2.value" data-fmt="1dp">100.0</td><td class="num">15 yrs</td><td class="num" data-model="ppa.intangible2.amortisation" data-fmt="1dp">6.7</td></tr>
+      <tr class="sub"><td>Less: Sentinel's existing amortisation replaced</td><td class="num">—</td><td></td><td class="num" data-model="ppa.target_existing_amortisation" data-fmt="paren1">(18.0)</td></tr>
       <tr class="total"><td>Incremental intangible amortisation</td><td class="num" data-model="ppa.write_up" data-fmt="1dp">1,100.0</td><td></td><td class="num" data-model="ppa.incremental_amortisation" data-fmt="1dp">104.7</td></tr>
       <tr><td>Deferred tax liability on write-up (24%)</td><td class="num" data-model="ppa.dtl" data-fmt="1dp">264.0</td><td></td><td class="num">—</td></tr>
       <tr><td>Goodwill</td><td class="num" data-model="ppa.goodwill" data-fmt="1dp">2,476.0</td><td>Indefinite</td><td class="num">—</td></tr>
@@ -654,15 +654,15 @@ a{color:var(--navy)}
     <tbody>
       <tr><td>Aegis standalone EBIT</td><td class="num">1,780.0</td><td class="num">1,945.0</td><td class="num">2,120.0</td></tr>
       <tr><td>Sentinel EBIT</td><td class="num">146.0</td><td class="num">168.0</td><td class="num">192.0</td></tr>
-      <tr><td>Run-rate synergies realised</td><td class="num">52.3</td><td class="num">80.8</td><td class="num">95.0</td></tr>
-      <tr><td>Incremental intangible amortisation</td><td class="num">(104.7)</td><td class="num">(104.7)</td><td class="num">(104.7)</td></tr>
-      <tr class="total"><td>Pro forma EBIT</td><td class="num">1,873.5</td><td class="num">2,089.0</td><td class="num">2,302.3</td></tr>
-      <tr><td>Net interest expense</td><td class="num">(354.5)</td><td class="num">(335.1)</td><td class="num">(313.4)</td></tr>
+      <tr><td>Run-rate synergies realised</td><td class="num" data-model="FY27.synergies" data-fmt="1dp">52.3</td><td class="num" data-model="FY28.synergies" data-fmt="1dp">80.8</td><td class="num" data-model="FY29.synergies" data-fmt="1dp">95.0</td></tr>
+      <tr><td>Incremental intangible amortisation</td><td class="num" data-model="ppa.incremental_amortisation" data-fmt="paren1">(104.7)</td><td class="num" data-model="ppa.incremental_amortisation" data-fmt="paren1">(104.7)</td><td class="num" data-model="ppa.incremental_amortisation" data-fmt="paren1">(104.7)</td></tr>
+      <tr class="total"><td>Pro forma EBIT</td><td class="num" data-model="FY27.pro_forma_ebit" data-fmt="1dp">1,873.5</td><td class="num" data-model="FY28.pro_forma_ebit" data-fmt="1dp">2,089.0</td><td class="num" data-model="FY29.pro_forma_ebit" data-fmt="1dp">2,302.3</td></tr>
+      <tr><td>Net interest expense</td><td class="num" data-model="FY27.net_interest" data-fmt="paren1">(354.5)</td><td class="num" data-model="FY28.net_interest" data-fmt="paren1">(335.1)</td><td class="num" data-model="FY29.net_interest" data-fmt="paren1">(313.4)</td></tr>
       <tr><td>Taxes at 23.5%</td><td class="num">(357.0)</td><td class="num">(412.2)</td><td class="num">(467.4)</td></tr>
-      <tr class="total"><td>Pro forma net income</td><td class="num">1,162.0</td><td class="num">1,341.7</td><td class="num">1,521.5</td></tr>
-      <tr><td>Pro forma diluted shares (m)</td><td class="num">319.9</td><td class="num">321.4</td><td class="num">322.9</td></tr>
-      <tr class="total"><td>Pro forma GAAP EPS</td><td class="num">$3.63</td><td class="num">$4.18</td><td class="num">$4.71</td></tr>
-      <tr><td>Aegis standalone GAAP EPS</td><td class="num">$3.92</td><td class="num">$4.31</td><td class="num">$4.73</td></tr>
+      <tr class="total"><td>Pro forma net income</td><td class="num" data-model="FY27.pro_forma_net_income" data-fmt="1dp">1,162.0</td><td class="num" data-model="FY28.pro_forma_net_income" data-fmt="1dp">1,341.7</td><td class="num" data-model="FY29.pro_forma_net_income" data-fmt="1dp">1,521.5</td></tr>
+      <tr><td>Pro forma diluted shares (m)</td><td class="num" data-model="FY27.pro_forma_shares" data-fmt="1dp">319.9</td><td class="num" data-model="FY28.pro_forma_shares" data-fmt="1dp">321.4</td><td class="num" data-model="FY29.pro_forma_shares" data-fmt="1dp">322.9</td></tr>
+      <tr class="total"><td>Pro forma GAAP EPS</td><td class="num" data-model="FY27.pro_forma_eps" data-fmt="money2">$3.63</td><td class="num" data-model="FY28.pro_forma_eps" data-fmt="money2">$4.18</td><td class="num" data-model="FY29.pro_forma_eps" data-fmt="money2">$4.71</td></tr>
+      <tr><td>Aegis standalone GAAP EPS</td><td class="num" data-model="FY27.standalone_eps" data-fmt="money2">$3.92</td><td class="num" data-model="FY28.standalone_eps" data-fmt="money2">$4.31</td><td class="num" data-model="FY29.standalone_eps" data-fmt="money2">$4.73</td></tr>
       <tr class="total"><td>Accretion / (dilution) — GAAP</td><td class="num neg" data-model="FY27.accretion_pct" data-fmt="pct1paren">(7.3%)</td><td class="num neg" data-model="FY28.accretion_pct" data-fmt="pct1paren">(3.2%)</td><td class="num neg" data-model="FY29.accretion_pct" data-fmt="pct1paren">(0.3%)</td></tr>
       <tr class="total"><td>Accretion / (dilution) — cash EPS</td><td class="num neg" data-model="FY27.cash_accretion_pct" data-fmt="pct1paren">(1.2%)</td><td class="num pos" data-model="FY28.cash_accretion_pct" data-fmt="pct1">2.1%</td><td class="num pos" data-model="FY29.cash_accretion_pct" data-fmt="pct1">4.4%</td></tr>
       <tr><td>Pro forma net leverage</td><td class="num" data-model="FY27.leverage" data-fmt="mult2">2.64×</td><td class="num" data-model="FY28.leverage" data-fmt="mult2">2.28×</td><td class="num" data-model="FY29.leverage" data-fmt="mult2">1.96×</td></tr>
@@ -696,12 +696,12 @@ a{color:var(--navy)}
     <caption>FY27E accretion / (dilution) across offer prices, synergies held at $95m</caption>
     <thead><tr><th>Offer price</th><th>Premium to unaffected</th><th>GAAP EPS impact</th><th>Cash EPS impact</th><th>Attributable to premium</th></tr></thead>
     <tbody>
-      <tr><td class="num">$58.00</td><td class="num">0.0%</td><td class="num neg">(4.5%)</td><td class="num pos">+1.5%</td><td class="num">—</td></tr>
-      <tr><td class="num">$62.00</td><td class="num">6.9%</td><td class="num neg">(5.2%)</td><td class="num pos">+0.9%</td><td class="num">(0.7%)</td></tr>
-      <tr><td class="num">$66.00</td><td class="num">13.8%</td><td class="num neg">(5.8%)</td><td class="num pos">+0.3%</td><td class="num">(1.3%)</td></tr>
-      <tr><td class="num">$70.00</td><td class="num">20.7%</td><td class="num neg">(6.4%)</td><td class="num neg">(0.3%)</td><td class="num">(1.9%)</td></tr>
-      <tr class="total"><td class="num">$76.00</td><td class="num">31.0%</td><td class="num neg">(7.3%)</td><td class="num neg">(1.2%)</td><td class="num">(2.8%)</td></tr>
-      <tr><td class="num">$82.00</td><td class="num">41.4%</td><td class="num neg">(8.2%)</td><td class="num neg">(2.0%)</td><td class="num">(3.7%)</td></tr>
+      <tr><td class="num">$58.00</td><td class="num">0.0%</td><td class="num neg" data-model="sweep.px58.gaap_pct" data-fmt="pct1signed">(4.5%)</td><td class="num pos" data-model="sweep.px58.cash_pct" data-fmt="pct1signed">+1.5%</td><td class="num">—</td></tr>
+      <tr><td class="num">$62.00</td><td class="num">6.9%</td><td class="num neg" data-model="sweep.px62.gaap_pct" data-fmt="pct1signed">(5.2%)</td><td class="num pos" data-model="sweep.px62.cash_pct" data-fmt="pct1signed">+0.9%</td><td class="num">(0.7%)</td></tr>
+      <tr><td class="num">$66.00</td><td class="num">13.8%</td><td class="num neg" data-model="sweep.px66.gaap_pct" data-fmt="pct1signed">(5.8%)</td><td class="num pos" data-model="sweep.px66.cash_pct" data-fmt="pct1signed">+0.3%</td><td class="num">(1.3%)</td></tr>
+      <tr><td class="num">$70.00</td><td class="num">20.7%</td><td class="num neg" data-model="sweep.px70.gaap_pct" data-fmt="pct1signed">(6.4%)</td><td class="num neg" data-model="sweep.px70.cash_pct" data-fmt="pct1signed">(0.3%)</td><td class="num">(1.9%)</td></tr>
+      <tr class="total"><td class="num">$76.00</td><td class="num">31.0%</td><td class="num neg" data-model="sweep.px76.gaap_pct" data-fmt="pct1signed">(7.3%)</td><td class="num neg" data-model="sweep.px76.cash_pct" data-fmt="pct1signed">(1.2%)</td><td class="num">(2.8%)</td></tr>
+      <tr><td class="num">$82.00</td><td class="num">41.4%</td><td class="num neg" data-model="sweep.px82.gaap_pct" data-fmt="pct1signed">(8.2%)</td><td class="num neg" data-model="sweep.px82.cash_pct" data-fmt="pct1signed">(2.0%)</td><td class="num">(3.7%)</td></tr>
     </tbody>
   </table></div>
 
@@ -731,11 +731,11 @@ a{color:var(--navy)}
   <div class="tw"><table>
     <thead><tr><th>Stock consideration</th><th>Cash consideration</th><th>FY27E GAAP</th><th>FY29E GAAP</th><th>FY27E net leverage</th><th>Comment</th></tr></thead>
     <tbody>
-      <tr><td class="num">0%</td><td class="num">100%</td><td class="num neg">(11.1%)</td><td class="num neg">(2.4%)</td><td class="num">3.49×</td><td>Maximum dilution and a likely ratings action</td></tr>
-      <tr><td class="num">25%</td><td class="num">75%</td><td class="num neg">(9.1%)</td><td class="num neg">(1.3%)</td><td class="num">3.07×</td><td>Still above stated leverage ceiling</td></tr>
-      <tr class="total"><td class="num">50%</td><td class="num">50%</td><td class="num neg">(7.3%)</td><td class="num neg">(0.3%)</td><td class="num">2.64×</td><td>Recommended — balances dilution, rating and seller certainty</td></tr>
-      <tr><td class="num">75%</td><td class="num">25%</td><td class="num neg">(5.6%)</td><td class="num pos">+0.6%</td><td class="num">2.22×</td><td>Best EPS outcome; transfers market risk to our shareholders</td></tr>
-      <tr><td class="num">100%</td><td class="num">0%</td><td class="num neg">(3.9%)</td><td class="num neg">(0.4%)</td><td class="num">1.80×</td><td>No deleveraging benefit; unattractive to our sponsors</td></tr>
+      <tr><td class="num">0%</td><td class="num">100%</td><td class="num neg" data-model="mix.s0.fy27_pct" data-fmt="pct1signed">(11.1%)</td><td class="num neg" data-model="mix.s0.fy29_pct" data-fmt="pct1signed">(2.4%)</td><td class="num" data-model="mix.s0.leverage" data-fmt="mult2">3.49×</td><td>Maximum dilution and a likely ratings action</td></tr>
+      <tr><td class="num">25%</td><td class="num">75%</td><td class="num neg" data-model="mix.s25.fy27_pct" data-fmt="pct1signed">(9.1%)</td><td class="num neg" data-model="mix.s25.fy29_pct" data-fmt="pct1signed">(1.3%)</td><td class="num" data-model="mix.s25.leverage" data-fmt="mult2">3.07×</td><td>Still above stated leverage ceiling</td></tr>
+      <tr class="total"><td class="num">50%</td><td class="num">50%</td><td class="num neg" data-model="mix.s50.fy27_pct" data-fmt="pct1signed">(7.3%)</td><td class="num neg" data-model="mix.s50.fy29_pct" data-fmt="pct1signed">(0.3%)</td><td class="num" data-model="mix.s50.leverage" data-fmt="mult2">2.64×</td><td>Recommended — balances dilution, rating and seller certainty</td></tr>
+      <tr><td class="num">75%</td><td class="num">25%</td><td class="num neg" data-model="mix.s75.fy27_pct" data-fmt="pct1signed">(5.6%)</td><td class="num pos" data-model="mix.s75.fy29_pct" data-fmt="pct1signed">+0.6%</td><td class="num" data-model="mix.s75.leverage" data-fmt="mult2">2.22×</td><td>Best EPS outcome; transfers market risk to our shareholders</td></tr>
+      <tr><td class="num">100%</td><td class="num">0%</td><td class="num neg" data-model="mix.s100.fy27_pct" data-fmt="pct1signed">(3.9%)</td><td class="num neg" data-model="mix.s100.fy29_pct" data-fmt="pct1signed">(0.4%)</td><td class="num" data-model="mix.s100.leverage" data-fmt="mult2">1.80×</td><td>No deleveraging benefit; unattractive to our sponsors</td></tr>
     </tbody>
   </table></div>
 
@@ -751,40 +751,40 @@ a{color:var(--navy)}
       <thead><tr><th style="text-align:left">Synergies</th><th>$66</th><th>$70</th><th>$74</th><th>$76</th><th>$80</th><th>$84</th></tr></thead>
       <tbody>
         <tr><th style="text-align:left">$55m</th>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 30%,var(--surface))" title="$66 / $55m synergies: (0.9%)">(0.9)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 48%,var(--surface))" title="$70 / $55m synergies: (1.5%)">(1.5)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 66%,var(--surface))" title="$74 / $55m synergies: (2.1%)">(2.1)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 75%,var(--surface))" title="$76 / $55m synergies: (2.4%)">(2.4)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 92%,var(--surface))" title="$80 / $55m synergies: (3.0%)">(3.0)</td>
-          <td class="cell" style="background:var(--c4)" title="$84 / $55m synergies: (3.6%)">(3.6)</td></tr>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 30%,var(--surface))" title="$66 offer / $55m synergies" data-model="grid.s55.px66" data-fmt="signed1">(0.9)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 48%,var(--surface))" title="$70 offer / $55m synergies" data-model="grid.s55.px70" data-fmt="signed1">(1.5)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 66%,var(--surface))" title="$74 offer / $55m synergies" data-model="grid.s55.px74" data-fmt="signed1">(2.1)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 75%,var(--surface))" title="$76 offer / $55m synergies" data-model="grid.s55.px76" data-fmt="signed1">(2.4)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 92%,var(--surface))" title="$80 offer / $55m synergies" data-model="grid.s55.px80" data-fmt="signed1">(3.0)</td>
+          <td class="cell" style="background:var(--c4)" title="$84 offer / $55m synergies" data-model="grid.s55.px84" data-fmt="signed1">(3.6)</td></tr>
         <tr><th style="text-align:left">$75m</th>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 12%,var(--surface));color:var(--ink)" title="$66 / $75m synergies: (0.3%)">(0.3)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 30%,var(--surface))" title="$70 / $75m synergies: (0.9%)">(0.9)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 48%,var(--surface))" title="$74 / $75m synergies: (1.5%)">(1.5)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 58%,var(--surface))" title="$76 / $75m synergies: (1.8%)">(1.8)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 75%,var(--surface))" title="$80 / $75m synergies: (2.4%)">(2.4)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 90%,var(--surface))" title="$84 / $75m synergies: (2.9%)">(2.9)</td></tr>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 12%,var(--surface));color:var(--ink)" title="$66 offer / $75m synergies" data-model="grid.s75.px66" data-fmt="signed1">(0.3)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 30%,var(--surface))" title="$70 offer / $75m synergies" data-model="grid.s75.px70" data-fmt="signed1">(0.9)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 48%,var(--surface))" title="$74 offer / $75m synergies" data-model="grid.s75.px74" data-fmt="signed1">(1.5)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 58%,var(--surface))" title="$76 offer / $75m synergies" data-model="grid.s75.px76" data-fmt="signed1">(1.8)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 75%,var(--surface))" title="$80 offer / $75m synergies" data-model="grid.s75.px80" data-fmt="signed1">(2.4)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 90%,var(--surface))" title="$84 offer / $75m synergies" data-model="grid.s75.px84" data-fmt="signed1">(2.9)</td></tr>
         <tr><th style="text-align:left">$95m</th>
-          <td class="cell" style="background:color-mix(in srgb,var(--c3) 14%,var(--surface));color:var(--ink)" title="$66 / $95m synergies: +0.3%">+0.3</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 12%,var(--surface));color:var(--ink)" title="$70 / $95m synergies: (0.3%)">(0.3)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 30%,var(--surface))" title="$74 / $95m synergies: (0.9%)">(0.9)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 40%,var(--surface))" title="Base case — $76 / $95m synergies: (1.2%)">(1.2)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 55%,var(--surface))" title="$80 / $95m synergies: (1.7%)">(1.7)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 72%,var(--surface))" title="$84 / $95m synergies: (2.3%)">(2.3)</td></tr>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 14%,var(--surface));color:var(--ink)" title="$66 offer / $95m synergies" data-model="grid.s95.px66" data-fmt="signed1">+0.3</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 12%,var(--surface));color:var(--ink)" title="$70 offer / $95m synergies" data-model="grid.s95.px70" data-fmt="signed1">(0.3)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 30%,var(--surface))" title="$74 offer / $95m synergies" data-model="grid.s95.px74" data-fmt="signed1">(0.9)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 40%,var(--surface))" title="Base case — $76 offer / $95m synergies" data-model="grid.s95.px76" data-fmt="signed1">(1.2)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 55%,var(--surface))" title="$80 offer / $95m synergies" data-model="grid.s95.px80" data-fmt="signed1">(1.7)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 72%,var(--surface))" title="$84 offer / $95m synergies" data-model="grid.s95.px84" data-fmt="signed1">(2.3)</td></tr>
         <tr><th style="text-align:left">$115m</th>
-          <td class="cell" style="background:color-mix(in srgb,var(--c3) 34%,var(--surface))" title="$66 / $115m synergies: +0.9%">+0.9</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c3) 14%,var(--surface));color:var(--ink)" title="$70 / $115m synergies: +0.3%">+0.3</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 8%,var(--surface));color:var(--ink)" title="$74 / $115m synergies: (0.2%)">(0.2)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 18%,var(--surface));color:var(--ink)" title="$76 / $115m synergies: (0.5%)">(0.5)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 36%,var(--surface))" title="$80 / $115m synergies: (1.1%)">(1.1)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 54%,var(--surface))" title="$84 / $115m synergies: (1.7%)">(1.7)</td></tr>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 34%,var(--surface))" title="$66 offer / $115m synergies" data-model="grid.s115.px66" data-fmt="signed1">+0.9</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 14%,var(--surface));color:var(--ink)" title="$70 offer / $115m synergies" data-model="grid.s115.px70" data-fmt="signed1">+0.3</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 8%,var(--surface));color:var(--ink)" title="$74 offer / $115m synergies" data-model="grid.s115.px74" data-fmt="signed1">(0.2)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 18%,var(--surface));color:var(--ink)" title="$76 offer / $115m synergies" data-model="grid.s115.px76" data-fmt="signed1">(0.5)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 36%,var(--surface))" title="$80 offer / $115m synergies" data-model="grid.s115.px80" data-fmt="signed1">(1.1)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 54%,var(--surface))" title="$84 offer / $115m synergies" data-model="grid.s115.px84" data-fmt="signed1">(1.7)</td></tr>
         <tr><th style="text-align:left">$135m</th>
-          <td class="cell" style="background:color-mix(in srgb,var(--c3) 56%,var(--surface))" title="$66 / $135m synergies: +1.6%">+1.6</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c3) 38%,var(--surface))" title="$70 / $135m synergies: +1.0%">+1.0</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c3) 18%,var(--surface));color:var(--ink)" title="$74 / $135m synergies: +0.4%">+0.4</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c3) 8%,var(--surface));color:var(--ink)" title="$76 / $135m synergies: +0.1%">+0.1</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 18%,var(--surface));color:var(--ink)" title="$80 / $135m synergies: (0.5%)">(0.5)</td>
-          <td class="cell" style="background:color-mix(in srgb,var(--c4) 36%,var(--surface))" title="$84 / $135m synergies: (1.1%)">(1.1)</td></tr>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 56%,var(--surface))" title="$66 offer / $135m synergies" data-model="grid.s135.px66" data-fmt="signed1">+1.6</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 38%,var(--surface))" title="$70 offer / $135m synergies" data-model="grid.s135.px70" data-fmt="signed1">+1.0</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 18%,var(--surface));color:var(--ink)" title="$74 offer / $135m synergies" data-model="grid.s135.px74" data-fmt="signed1">+0.4</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c3) 8%,var(--surface));color:var(--ink)" title="$76 offer / $135m synergies" data-model="grid.s135.px76" data-fmt="signed1">+0.1</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 18%,var(--surface));color:var(--ink)" title="$80 offer / $135m synergies" data-model="grid.s135.px80" data-fmt="signed1">(0.5)</td>
+          <td class="cell" style="background:color-mix(in srgb,var(--c4) 36%,var(--surface))" title="$84 offer / $135m synergies" data-model="grid.s135.px84" data-fmt="signed1">(1.1)</td></tr>
       </tbody>
     </table>
   </div>
@@ -968,12 +968,12 @@ a{color:var(--navy)}
   <div class="tw"><table>
     <thead><tr><th>Component</th><th>Low</th><th>High</th><th>Basis</th></tr></thead>
     <tbody>
-      <tr><td>Risk-free rate</td><td class="num">4.15%</td><td class="num">4.15%</td><td>10-year government yield</td></tr>
-      <tr><td>Equity risk premium</td><td class="num">5.00%</td><td class="num">5.75%</td><td>Long-run supply-side estimate</td></tr>
-      <tr><td>Levered beta</td><td class="num">1.05</td><td class="num">1.25</td><td>Peer median, relevered at target capital structure</td></tr>
-      <tr><td>Size premium</td><td class="num">0.35%</td><td class="num">0.60%</td><td>Mid-cap decile</td></tr>
-      <tr><td>After-tax cost of debt</td><td class="num">3.99%</td><td class="num">3.99%</td><td>5.25% pre-tax at 24%</td></tr>
-      <tr class="total"><td>WACC</td><td class="num">9.00%</td><td class="num">10.50%</td><td>At 15% target debt weighting</td></tr>
+      <tr><td>Risk-free rate</td><td class="num" data-model="wacc.low.risk_free_pct" data-fmt="pct2">4.15%</td><td class="num" data-model="wacc.high.risk_free_pct" data-fmt="pct2">4.15%</td><td>10-year government yield</td></tr>
+      <tr><td>Equity risk premium</td><td class="num" data-model="wacc.low.erp_pct" data-fmt="pct2">5.00%</td><td class="num" data-model="wacc.high.erp_pct" data-fmt="pct2">5.75%</td><td>Long-run supply-side estimate</td></tr>
+      <tr><td>Levered beta</td><td class="num" data-model="wacc.low.levered_beta" data-fmt="2dp">1.05</td><td class="num" data-model="wacc.high.levered_beta" data-fmt="2dp">1.25</td><td>Peer median, relevered at target capital structure</td></tr>
+      <tr><td>Size premium</td><td class="num" data-model="wacc.low.size_premium_pct" data-fmt="pct2">0.35%</td><td class="num" data-model="wacc.high.size_premium_pct" data-fmt="pct2">0.60%</td><td>Mid-cap decile</td></tr>
+      <tr><td>After-tax cost of debt</td><td class="num" data-model="wacc.low.after_tax_debt_pct" data-fmt="pct2">3.99%</td><td class="num" data-model="wacc.high.after_tax_debt_pct" data-fmt="pct2">3.99%</td><td>5.25% pre-tax at 24%</td></tr>
+      <tr class="total"><td>WACC</td><td class="num" data-model="wacc.low_pct" data-fmt="pct2">8.89%</td><td class="num" data-model="wacc.high_pct" data-fmt="pct2">10.75%</td><td>At 15% target debt weighting</td></tr>
     </tbody>
   </table></div>
 

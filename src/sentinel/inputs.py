@@ -1,10 +1,13 @@
 """Every assumption in the model, in one place.
 
-The rule this module exists to enforce: **no figure is typed twice.** Exhibits in
-the book are generated from here, and ``verify_book.py`` fails the build if a
-number printed in the book disagrees with the number the model computes. A pitch
-book whose pages can drift out of line with its model is a pitch book that will
-eventually be wrong in front of a client.
+The rule this module exists to enforce: **no assumption is typed twice.** The
+book's analytical exhibits are generated from here, and ``verify_book.py`` fails
+the build if a number printed in the book disagrees with the number the model
+computes. A pitch book whose pages can drift out of line with its model is a
+pitch book that will eventually be wrong in front of a client.
+
+The rule binds the figures the book tags, not every character on the page: the
+README names the exhibits that are illustrative narrative instead.
 
 Sentinel Compliance Systems, Aegis Data Group and every counterparty are
 fictional. See README.md.

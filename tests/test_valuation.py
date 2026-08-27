@@ -7,6 +7,7 @@ import pytest
 from sentinel.inputs import SENTINEL
 from sentinel.valuation import (
     DCF_YEARS,
+    PRECEDENTS,
     WACC_HIGH,
     WACC_LOW,
     dcf_exit_multiple,
@@ -96,6 +97,19 @@ class TestComparables:
         m = precedent_medians()
         assert 15.0 < m["ev_ebitda"] < 35.0
         assert 0.15 < m["premium"] < 0.55
+
+    def test_every_median_is_the_median_of_the_transactions_above_it(self):
+        """The median row of the precedent table and the six rows above it were
+        two independent transcriptions until both were tagged, and they had
+        already drifted: the book printed 7.1x for a median revenue multiple
+        that is 7.0x. This pins every column of that row to the list it
+        summarises."""
+        m = precedent_medians()
+        n = len(PRECEDENTS)
+        for key, col in (("tev", 3), ("ev_revenue", 4), ("ev_ebitda", 5), ("premium", 6)):
+            vals = sorted(p[col] for p in PRECEDENTS)
+            expected = (vals[n // 2 - 1] + vals[n // 2]) / 2 if n % 2 == 0 else vals[n // 2]
+            assert m[key] == pytest.approx(expected)
 
 
 class TestLbo:

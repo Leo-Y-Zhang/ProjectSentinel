@@ -47,6 +47,19 @@ class TestIdentities:
         assert su.notes >= 0
         assert su.tlb >= 0
 
+    def test_the_intangible_rows_add_up_to_the_totals_printed_beneath_them(self):
+        """The book prints the three component rows and the two totals under
+        them, so a reader can add the column up. Both sides now come from the
+        same source, and this asserts the sum the page invites."""
+        terms = DealTerms()
+        components = list(terms.intangibles.values())
+        ppa = purchase_price_allocation(SENTINEL, terms,
+                                        sources_and_uses(SENTINEL, AEGIS, terms))
+        assert ppa.write_up == pytest.approx(sum(v for v, _ in components))
+        gross = sum(v / life for v, life in components)
+        assert ppa.incremental_amortisation == pytest.approx(
+            gross - SENTINEL.existing_intangible_amort)
+
     def test_goodwill_absorbs_the_premium(self):
         """Identifiable intangibles are fair-valued independently of price, so a
         higher offer must land entirely in goodwill."""
