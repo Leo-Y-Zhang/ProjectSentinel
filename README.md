@@ -115,7 +115,7 @@ process" a measurement instead of an opinion.
 | `src/sentinel/exhibits.py` | The flat dictionary of every figure the book may print. |
 | `verify_book.py` | The gate. |
 | `book/index.html` | The pitch book. |
-| `tests/` | 65 tests, including the gate's own failure modes. |
+| `tests/` | 66 tests, including the gate's own failure modes. |
 
 ## Running it
 
@@ -124,7 +124,7 @@ pytest and ruff, and nothing else is needed.
 
 ```bash
 pip install -e ".[dev]"
-pytest                 # 65 tests
+pytest                 # 66 tests
 ruff check .
 python verify_book.py  # the gate
 ```

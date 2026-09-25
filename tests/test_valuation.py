@@ -132,6 +132,15 @@ class TestLbo:
         assert lbo(px).irr == pytest.approx(0.20, abs=1e-3)
         assert lbo(px + 1.0).irr < 0.20
 
+    def test_a_hurdle_the_search_range_cannot_bracket_is_refused(self):
+        """Bisection without a bracket converges on an end of its range and
+        reports that as the answer: asked for a 100% IRR it returned $10.00,
+        where the IRR is 73%, and asked for -50% it returned the $200 ceiling."""
+        with pytest.raises(ValueError):
+            max_sponsor_price(1.00)
+        with pytest.raises(ValueError):
+            max_sponsor_price(-0.50)
+
     def test_a_lower_hurdle_permits_a_higher_price(self):
         assert max_sponsor_price(0.18) > max_sponsor_price(0.20)
 

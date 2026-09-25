@@ -186,6 +186,13 @@ def max_sponsor_price(hurdle: float = 0.20, exit_multiple: float = 22.0,
                       company: Company = SENTINEL) -> float:
     """Highest entry price still clearing the hurdle. Bisection, not a guess."""
     lo, hi = 10.0, 200.0
+    # Bisection needs the answer inside its bracket. Without that it converges
+    # on one end and returns it as though solved: a price that misses the
+    # hurdle, or a "maximum" that is only the top of the search.
+    if lbo(lo, exit_multiple, company=company).irr < hurdle:
+        raise ValueError(f"no entry price from ${lo:.0f} clears a {hurdle:.0%} hurdle")
+    if lbo(hi, exit_multiple, company=company).irr >= hurdle:
+        raise ValueError(f"a {hurdle:.0%} hurdle is still cleared at ${hi:.0f}")
     for _ in range(200):
         mid = (lo + hi) / 2
         if lbo(mid, exit_multiple, company=company).irr >= hurdle:
