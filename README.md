@@ -34,10 +34,12 @@ text the page actually displays. **176 figures are checked.** Change an assumpti
 in `inputs.py` and the gate goes red until the book is brought back into line.
 
 The gate refuses to be vacuous: if it finds no tagged figures at all it fails
-rather than reporting success on an empty check. `tests/test_gate.py` drives it
-against a deliberately broken book to prove each failure mode, including that one.
-It also asserts the count in the sentence above, so a claim about coverage cannot
-outlive the coverage.
+rather than reporting success on an empty check. Nor can a figure slip past it by
+sitting in the wrong element: a `data-model` tag the gate cannot read, on a `<th>`
+say, fails the build instead of quietly shrinking the count. `tests/test_gate.py`
+drives it against a deliberately broken book to prove each failure mode, including
+those two. It also asserts the count in the sentence above, so a claim about
+coverage cannot outlive the coverage.
 
 ### What is gated, and what is not
 
@@ -108,7 +110,7 @@ process" a measurement instead of an opinion.
 | `src/sentinel/exhibits.py` | The flat dictionary of every figure the book may print. |
 | `verify_book.py` | The gate. |
 | `book/index.html` | The pitch book. |
-| `tests/` | 64 tests, including the gate's own failure modes. |
+| `tests/` | 65 tests, including the gate's own failure modes. |
 
 ## Running it
 
@@ -117,7 +119,7 @@ pytest and ruff, and nothing else is needed.
 
 ```bash
 pip install -e ".[dev]"
-pytest                 # 64 tests
+pytest                 # 65 tests
 ruff check .
 python verify_book.py  # the gate
 ```

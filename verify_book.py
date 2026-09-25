@@ -12,13 +12,15 @@ figure that has drifted is indistinguishable from one that is right. Every
 serious defect in this project's history has been a claim nobody could
 mechanically check. This is the check.
 
-Exit codes: 0 everything agrees, 1 a figure disagrees or a key is unknown.
+Exit codes: 0 everything agrees, 1 a figure disagrees, a key is unknown, or a
+tagged figure sits on an element the gate cannot read.
 """
 
 from __future__ import annotations
 
 import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent / "src"))
@@ -32,6 +34,10 @@ TAG = re.compile(
     r'(?:[^>]*\bdata-fmt="(?P<fmt>[^"]+)")?[^>]*>(?P<text>.*?)</(?P=el)>',
     re.DOTALL,
 )
+
+# Every data-model attribute on the page, whatever element carries it. TAG must
+# have read each of them; one it did not is a figure nobody checked.
+ATTR = re.compile(r'\bdata-model="(?P<key>[^"]+)"')
 
 
 def render(value: float, fmt: str | None) -> str:
@@ -90,9 +96,11 @@ def main() -> int:
     html = BOOK.read_text(encoding="utf-8")
     values = figures()
     checked = failures = 0
+    read: Counter[str] = Counter()
 
     for m in TAG.finditer(html):
         key, fmt = m.group("key"), m.group("fmt")
+        read[key] += 1
         printed = normalise(m.group("text"))
         if key not in values:
             print(f"  UNKNOWN KEY  {key!r} is printed in the book but not in figures()")
@@ -103,6 +111,14 @@ def main() -> int:
         if printed != expected:
             print(f"  MISMATCH     {key}: book shows {printed!r}, model gives {expected!r}")
             failures += 1
+
+    # A tag on an element TAG does not match (a th, a div, an em), or nested
+    # inside another tagged element, is otherwise skipped in silence: the count
+    # drops by one and the figure can print anything.
+    for key, n in sorted((Counter(ATTR.findall(html)) - read).items()):
+        print(f"  UNREAD       {key!r} is tagged where the gate cannot read it"
+              " (an element other than span/td/strong/b, or inside another tag)")
+        failures += n
 
     if checked == 0:
         # A gate that checks nothing passes everything. Refuse to be vacuous.

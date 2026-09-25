@@ -93,6 +93,22 @@ class TestGateBehaviour:
         finally:
             BOOK.write_text(original, encoding="utf-8")
 
+    def test_a_figure_on_an_element_the_gate_cannot_read_turns_it_red(self):
+        """The tag pattern reads span, td, strong and b. A data-model attribute
+        on any other element -- a th, a div, an em -- used to be skipped without
+        a word, so its figure could say anything: this wrong value on a th
+        passed, with the gate quietly reporting one figure fewer."""
+        original = BOOK.read_text(encoding="utf-8")
+        cell = '<td class="num" data-model="su.tlb" data-fmt="1dp">1,450.0</td>'
+        assert cell in original, "anchor for the mutation was not found"
+        broken = original.replace(
+            cell, '<th class="num" data-model="su.tlb" data-fmt="1dp">9,999.9</th>')
+        BOOK.write_text(broken, encoding="utf-8")
+        try:
+            assert run_gate() == 1
+        finally:
+            BOOK.write_text(original, encoding="utf-8")
+
     def test_a_book_with_nothing_tagged_fails_rather_than_passes(self):
         """The most important test here. If the tags were ever stripped, a naive
         gate would report success having checked nothing at all."""
