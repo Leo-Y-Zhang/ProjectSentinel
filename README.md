@@ -2,7 +2,7 @@
 
 A sell-side M&A pitch book whose analytical exhibits are **generated from a
 tested model rather than typed**, with a build gate that fails when the book and
-the model disagree. **180 figures** carry that guarantee; the exhibits that do
+the model disagree. **185 figures** carry that guarantee; the exhibits that do
 not are named below rather than left for a reader to discover.
 
 ```
@@ -30,7 +30,7 @@ figure carries the name of the model value that produced it:
 
 `verify_book.py` walks the book, resolves every one of those keys against
 `sentinel.exhibits.figures()`, formats it the same way, and compares it with the
-text the page actually displays. **180 figures are checked.** Change an assumption
+text the page actually displays. **185 figures are checked.** Change an assumption
 in `inputs.py` and the gate goes red until the book is brought back into line.
 
 The gate refuses to be vacuous: if it finds no tagged figures at all it fails
@@ -115,7 +115,7 @@ process" a measurement instead of an opinion.
 | `src/sentinel/exhibits.py` | The flat dictionary of every figure the book may print. |
 | `verify_book.py` | The gate. |
 | `book/index.html` | The pitch book. |
-| `tests/` | 66 tests, including the gate's own failure modes. |
+| `tests/` | 67 tests, including the gate's own failure modes. |
 
 ## Running it
 
@@ -124,7 +124,7 @@ pytest and ruff, and nothing else is needed.
 
 ```bash
 pip install -e ".[dev]"
-pytest                 # 66 tests
+pytest                 # 67 tests
 ruff check .
 python verify_book.py  # the gate
 ```

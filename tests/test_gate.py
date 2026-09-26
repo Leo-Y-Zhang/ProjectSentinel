@@ -148,6 +148,17 @@ class TestCoverage:
         assert tagged == {f"prec.{i}.{col}" for i in range(len(PRECEDENTS))
                           for col in ("tev", "ev_rev", "ev_ebitda", "premium_pct")}
 
+    def test_the_price_sweeps_premium_column_is_gated_row_by_row(self):
+        """"Attributable to premium" was typed as the difference of the two
+        rounded GAAP percentages beside it, which put all five cells 0.1pp away
+        from the model: (0.7%) printed where the model gives (0.6%)."""
+        import re
+
+        from sentinel.exhibits import PRICE_SWEEP
+        html = BOOK.read_text(encoding="utf-8")
+        tagged = set(re.findall(r'data-model="(sweep\.px\d+\.premium_effect_pct)"', html))
+        assert tagged == {f"sweep.px{int(p)}.premium_effect_pct" for p in PRICE_SWEEP[1:]}
+
     def test_no_gated_figure_is_repeated_in_a_tooltip(self):
         """A number copied into a title attribute is outside the gate: the tag
         regex reads element text only, so the copy could drift away from the

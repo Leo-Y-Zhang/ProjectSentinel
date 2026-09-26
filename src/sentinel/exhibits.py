@@ -140,10 +140,16 @@ def figures() -> dict[str, float]:
         out[f"prec.{i}.ev_ebitda"] = ev_ebitda
         out[f"prec.{i}.premium_pct"] = premium * 100
 
+    # "Attributable to premium" is the extra GAAP dilution against the same deal
+    # struck at the unaffected price. It used to be typed as the difference of
+    # two rounded percentages, which put every cell of the column 0.1pp high.
+    at_unaffected = merger_consequences(
+        "FY27", terms=with_price(DealTerms(), SENTINEL.share_price)).accretion
     for px in PRICE_SWEEP:
         r = merger_consequences("FY27", terms=with_price(DealTerms(), px))
         out[f"sweep.px{int(px)}.gaap_pct"] = r.accretion * 100
         out[f"sweep.px{int(px)}.cash_pct"] = r.cash_accretion * 100
+        out[f"sweep.px{int(px)}.premium_effect_pct"] = (r.accretion - at_unaffected) * 100
 
     for m in MIX_SWEEP:
         t = with_stock_pct(DealTerms(), m)
