@@ -109,6 +109,27 @@ class TestGateBehaviour:
         finally:
             BOOK.write_text(original, encoding="utf-8")
 
+    @pytest.mark.parametrize("attr", [
+        "data-model='su.tlb'",
+        'data-model = "su.tlb"',
+        'DATA-MODEL="su.tlb"',
+        "data-model=su.tlb",
+    ])
+    def test_a_tag_spelt_other_than_the_canonical_way_turns_it_red(self, attr):
+        """A browser reads every one of these as the same data-model attribute,
+        but the tag pattern only matches data-model="...". Each of them, with a
+        wrong value, used to pass the gate: the figure dropped out of the count
+        and nothing said so."""
+        original = BOOK.read_text(encoding="utf-8")
+        cell = 'data-model="su.tlb" data-fmt="1dp">1,450.0<'
+        assert cell in original, "anchor for the mutation was not found"
+        BOOK.write_text(original.replace(cell, f'{attr} data-fmt="1dp">9,999.9<'),
+                        encoding="utf-8")
+        try:
+            assert run_gate() == 1
+        finally:
+            BOOK.write_text(original, encoding="utf-8")
+
     def test_a_book_with_nothing_tagged_fails_rather_than_passes(self):
         """The most important test here. If the tags were ever stripped, a naive
         gate would report success having checked nothing at all."""
@@ -147,6 +168,19 @@ class TestCoverage:
         tagged = set(re.findall(r'data-model="(prec\.[^"]+)"', html))
         assert tagged == {f"prec.{i}.{col}" for i in range(len(PRECEDENTS))
                           for col in ("tev", "ev_rev", "ev_ebitda", "premium_pct")}
+
+    def test_the_football_fields_modelled_bars_are_gated(self):
+        """The README names the DCF, comparables and precedent bars as gated.
+        The last two were printed untagged until the model's own values were
+        wired to them, so both ends of all four bars are pinned here."""
+        import re
+
+        html = BOOK.read_text(encoding="utf-8")
+        tagged = set(re.findall(
+            r'data-model="(val\.(?:dcf_perp|dcf_exit|comps|precedent)_(?:low|high))"', html))
+        assert tagged == {f"val.{bar}_{end}"
+                          for bar in ("dcf_perp", "dcf_exit", "comps", "precedent")
+                          for end in ("low", "high")}
 
     def test_the_price_sweeps_premium_column_is_gated_row_by_row(self):
         """"Attributable to premium" was typed as the difference of the two

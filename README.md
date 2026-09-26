@@ -35,8 +35,9 @@ in `inputs.py` and the gate goes red until the book is brought back into line.
 
 The gate refuses to be vacuous: if it finds no tagged figures at all it fails
 rather than reporting success on an empty check. Nor can a figure slip past it by
-sitting in the wrong element: a `data-model` tag the gate cannot read, on a `<th>`
-say, fails the build instead of quietly shrinking the count. `tests/test_gate.py`
+sitting in the wrong element or spelling its tag differently: a `data-model` tag
+the gate cannot read, on a `<th>` say, or written `data-model='...'`, fails the
+build instead of quietly shrinking the count. `tests/test_gate.py`
 drives it against a deliberately broken book to prove each failure mode, including
 those two. It also asserts the count in the sentence above, so a claim about
 coverage cannot outlive the coverage.
@@ -115,7 +116,7 @@ process" a measurement instead of an opinion.
 | `src/sentinel/exhibits.py` | The flat dictionary of every figure the book may print. |
 | `verify_book.py` | The gate. |
 | `book/index.html` | The pitch book. |
-| `tests/` | 67 tests, including the gate's own failure modes. |
+| `tests/` | 72 tests, including the gate's own failure modes. |
 
 ## Running it
 
@@ -124,7 +125,7 @@ pytest and ruff, and nothing else is needed.
 
 ```bash
 pip install -e ".[dev]"
-pytest                 # 67 tests
+pytest                 # 72 tests
 ruff check .
 python verify_book.py  # the gate
 ```

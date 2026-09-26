@@ -35,9 +35,14 @@ TAG = re.compile(
     re.DOTALL,
 )
 
-# Every data-model attribute on the page, whatever element carries it. TAG must
-# have read each of them; one it did not is a figure nobody checked.
-ATTR = re.compile(r'\bdata-model="(?P<key>[^"]+)"')
+# Every data-model attribute on the page, whatever element carries it and however
+# it is spelt: HTML attribute names ignore case, and the value may be single-quoted,
+# unquoted or spaced from its "=". TAG reads only the canonical form, so it must
+# have read each of these; one it did not is a figure nobody checked.
+ATTR = re.compile(
+    r'\bdata-model\s*=\s*(?:"(?P<dq>[^"]*)"|\'(?P<sq>[^\']*)\'|(?P<bare>[^\s"\'>]+))',
+    re.IGNORECASE,
+)
 
 
 def render(value: float, fmt: str | None) -> str:
@@ -112,12 +117,15 @@ def main() -> int:
             print(f"  MISMATCH     {key}: book shows {printed!r}, model gives {expected!r}")
             failures += 1
 
-    # A tag on an element TAG does not match (a th, a div, an em), or nested
-    # inside another tagged element, is otherwise skipped in silence: the count
-    # drops by one and the figure can print anything.
-    for key, n in sorted((Counter(ATTR.findall(html)) - read).items()):
+    # A tag on an element TAG does not match (a th, a div, an em), nested inside
+    # another tagged element, or spelt other than data-model="..." is otherwise
+    # skipped in silence: the count drops by one and the figure can print anything.
+    tagged = Counter(a.group("dq") or a.group("sq") or a.group("bare") or ""
+                     for a in ATTR.finditer(html))
+    for key, n in sorted((tagged - read).items()):
         print(f"  UNREAD       {key!r} is tagged where the gate cannot read it"
-              " (an element other than span/td/strong/b, or inside another tag)")
+              " (an element other than span/td/strong/b, inside another tag, or an"
+              ' attribute not written exactly as data-model="...")')
         failures += n
 
     if checked == 0:
