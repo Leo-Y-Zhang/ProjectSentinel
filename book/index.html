@@ -449,9 +449,9 @@ a{color:var(--navy)}
     <div class="ff-row"><div class="ff-lab">Research price targets</div>
       <div class="ff-track"><div class="ff-bar" style="left:29.2%;width:38.5%;background:var(--c1)"><span>$54.00</span><span>$79.00</span></div></div></div>
     <div class="ff-row"><div class="ff-lab">Public comparables<br><small>16.0×–24.0× FY27E EBITDA</small></div>
-      <div class="ff-track"><div class="ff-bar" style="left:28.5%;width:44.5%;background:var(--c1)"><span>$53.52</span><span>$82.44</span></div></div></div>
+      <div class="ff-track"><div class="ff-bar" style="left:28.5%;width:44.5%;background:var(--c1)"><span data-model="val.comps_low" data-fmt="money2">$53.52</span><span data-model="val.comps_high" data-fmt="money2">$82.44</span></div></div></div>
     <div class="ff-row"><div class="ff-lab">Precedent transactions<br><small>19.0×–29.0× LTM EBITDA</small></div>
-      <div class="ff-track"><div class="ff-bar" style="left:32.8%;width:49.1%;background:var(--c2)"><span>$56.33</span><span>$88.25</span></div></div></div>
+      <div class="ff-track"><div class="ff-bar" style="left:32.8%;width:49.1%;background:var(--c2)"><span data-model="val.precedent_low" data-fmt="money2">$56.33</span><span data-model="val.precedent_high" data-fmt="money2">$88.25</span></div></div></div>
     <div class="ff-row"><div class="ff-lab">DCF — perpetuity growth<br><small>WACC <span data-model="wacc.low_pct" data-fmt="pct1">8.9%</span>–<span data-model="wacc.high_pct" data-fmt="pct1">10.7%</span>, TGR 2.75%–3.25%</small></div>
       <div class="ff-track"><div class="ff-bar" style="left:5.5%;width:27.2%;background:var(--c3)"><span data-model="val.dcf_perp_low" data-fmt="money2">$38.58</span><span data-model="val.dcf_perp_high" data-fmt="money2">$56.23</span></div></div></div>
     <div class="ff-row"><div class="ff-lab">DCF — exit multiple<br><small>18.0×–22.0× terminal EBITDA</small></div>
@@ -697,11 +697,11 @@ a{color:var(--navy)}
     <thead><tr><th>Offer price</th><th>Premium to unaffected</th><th>GAAP EPS impact</th><th>Cash EPS impact</th><th>Attributable to premium</th></tr></thead>
     <tbody>
       <tr><td class="num">$58.00</td><td class="num">0.0%</td><td class="num neg" data-model="sweep.px58.gaap_pct" data-fmt="pct1signed">(4.5%)</td><td class="num pos" data-model="sweep.px58.cash_pct" data-fmt="pct1signed">+1.5%</td><td class="num">—</td></tr>
-      <tr><td class="num">$62.00</td><td class="num">6.9%</td><td class="num neg" data-model="sweep.px62.gaap_pct" data-fmt="pct1signed">(5.2%)</td><td class="num pos" data-model="sweep.px62.cash_pct" data-fmt="pct1signed">+0.9%</td><td class="num">(0.7%)</td></tr>
-      <tr><td class="num">$66.00</td><td class="num">13.8%</td><td class="num neg" data-model="sweep.px66.gaap_pct" data-fmt="pct1signed">(5.8%)</td><td class="num pos" data-model="sweep.px66.cash_pct" data-fmt="pct1signed">+0.3%</td><td class="num">(1.3%)</td></tr>
-      <tr><td class="num">$70.00</td><td class="num">20.7%</td><td class="num neg" data-model="sweep.px70.gaap_pct" data-fmt="pct1signed">(6.4%)</td><td class="num neg" data-model="sweep.px70.cash_pct" data-fmt="pct1signed">(0.3%)</td><td class="num">(1.9%)</td></tr>
-      <tr class="total"><td class="num">$76.00</td><td class="num">31.0%</td><td class="num neg" data-model="sweep.px76.gaap_pct" data-fmt="pct1signed">(7.3%)</td><td class="num neg" data-model="sweep.px76.cash_pct" data-fmt="pct1signed">(1.2%)</td><td class="num">(2.8%)</td></tr>
-      <tr><td class="num">$82.00</td><td class="num">41.4%</td><td class="num neg" data-model="sweep.px82.gaap_pct" data-fmt="pct1signed">(8.2%)</td><td class="num neg" data-model="sweep.px82.cash_pct" data-fmt="pct1signed">(2.0%)</td><td class="num">(3.7%)</td></tr>
+      <tr><td class="num">$62.00</td><td class="num">6.9%</td><td class="num neg" data-model="sweep.px62.gaap_pct" data-fmt="pct1signed">(5.2%)</td><td class="num pos" data-model="sweep.px62.cash_pct" data-fmt="pct1signed">+0.9%</td><td class="num" data-model="sweep.px62.premium_effect_pct" data-fmt="pct1signed">(0.6%)</td></tr>
+      <tr><td class="num">$66.00</td><td class="num">13.8%</td><td class="num neg" data-model="sweep.px66.gaap_pct" data-fmt="pct1signed">(5.8%)</td><td class="num pos" data-model="sweep.px66.cash_pct" data-fmt="pct1signed">+0.3%</td><td class="num" data-model="sweep.px66.premium_effect_pct" data-fmt="pct1signed">(1.2%)</td></tr>
+      <tr><td class="num">$70.00</td><td class="num">20.7%</td><td class="num neg" data-model="sweep.px70.gaap_pct" data-fmt="pct1signed">(6.4%)</td><td class="num neg" data-model="sweep.px70.cash_pct" data-fmt="pct1signed">(0.3%)</td><td class="num" data-model="sweep.px70.premium_effect_pct" data-fmt="pct1signed">(1.8%)</td></tr>
+      <tr class="total"><td class="num">$76.00</td><td class="num">31.0%</td><td class="num neg" data-model="sweep.px76.gaap_pct" data-fmt="pct1signed">(7.3%)</td><td class="num neg" data-model="sweep.px76.cash_pct" data-fmt="pct1signed">(1.2%)</td><td class="num" data-model="sweep.px76.premium_effect_pct" data-fmt="pct1signed">(2.7%)</td></tr>
+      <tr><td class="num">$82.00</td><td class="num">41.4%</td><td class="num neg" data-model="sweep.px82.gaap_pct" data-fmt="pct1signed">(8.2%)</td><td class="num neg" data-model="sweep.px82.cash_pct" data-fmt="pct1signed">(2.0%)</td><td class="num" data-model="sweep.px82.premium_effect_pct" data-fmt="pct1signed">(3.6%)</td></tr>
     </tbody>
   </table></div>
 
@@ -714,7 +714,7 @@ a{color:var(--navy)}
   <h3>How we would use this</h3>
   <ul class="tick">
     <li><strong>In first-round guidance:</strong> pre-empt it. Provide the purchase price allocation early so bidders model it correctly rather than conservatively.</li>
-    <li><strong>Against a lowball:</strong> a bidder claiming EPS dilution as the reason for a $66 indication is describing a $5.8% problem it would still have at $4.5% for free.</li>
+    <li><strong>Against a lowball:</strong> a bidder claiming EPS dilution as the reason for a $66 indication is describing a 5.8% problem it would still have at 4.5% for free.</li>
     <li><strong>With our own Board:</strong> expect the winning bidder's announcement to lead on cash EPS and synergies. That is not spin; it is the correct measure, and we should not be surprised by it.</li>
   </ul>
 

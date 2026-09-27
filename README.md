@@ -2,7 +2,7 @@
 
 A sell-side M&A pitch book whose analytical exhibits are **generated from a
 tested model rather than typed**, with a build gate that fails when the book and
-the model disagree. **176 figures** carry that guarantee; the exhibits that do
+the model disagree. **185 figures** carry that guarantee; the exhibits that do
 not are named below rather than left for a reader to discover.
 
 ```
@@ -30,31 +30,39 @@ figure carries the name of the model value that produced it:
 
 `verify_book.py` walks the book, resolves every one of those keys against
 `sentinel.exhibits.figures()`, formats it the same way, and compares it with the
-text the page actually displays. **176 figures are checked.** Change an assumption
+text the page actually displays. **185 figures are checked.** Change an assumption
 in `inputs.py` and the gate goes red until the book is brought back into line.
 
 The gate refuses to be vacuous: if it finds no tagged figures at all it fails
-rather than reporting success on an empty check. `tests/test_gate.py` drives it
-against a deliberately broken book to prove each failure mode, including that one.
-It also asserts the count in the sentence above, so a claim about coverage cannot
-outlive the coverage.
+rather than reporting success on an empty check. Nor can a figure slip past it by
+sitting in the wrong element or spelling its tag differently: a `data-model` tag
+the gate cannot read, on a `<th>` say, or written `data-model='...'`, fails the
+build instead of quietly shrinking the count. `tests/test_gate.py`
+drives it against a deliberately broken book to prove each failure mode, including
+those two. It also asserts the count in the sentence above, so a claim about
+coverage cannot outlive the coverage.
 
 ### What is gated, and what is not
 
 Gated, cell by cell: the merger consequences build-up and its accretion lines,
 sources and uses, the purchase price allocation, the consideration-mix table, the
 offer-price sweep, the precedent transactions and their median row, the sponsor
-LBO returns, the discount-rate build, and all thirty cells of the cash EPS
-sensitivity grid.
+LBO returns, the discount-rate build, the DCF, public-comparables and
+precedent-transaction bars of the valuation football field, and all thirty cells
+of the cash EPS sensitivity grid.
 
 Not gated, and illustrative rather than modelled:
 
 - the **FY24A and FY25A columns** of the financial summary, and its gross-profit
   and Rule-of-40 rows — there is no history and no gross margin in the model
+- the rest of the **valuation football field** on page 6: the 52-week trading
+  range and the research price targets are market data rather than model output,
+  and the leveraged-buyout bar is typed
 - the **buyer universe** on pages 7 to 8: each buyer's synergy capacity, ability
   to pay and equity capacity is a judgement written for the exercise, not a
-  solved number. The one sponsor figure that *is* solved, `max_sponsor_price`,
-  is gated
+  solved number. The one sponsor figure the model does solve,
+  `max_sponsor_price`, is tested but not printed; the gated sponsor returns table
+  on page 9 carries the same conclusion
 - **figures inside prose** — callouts, page footers and most body text. The gate
   reads table cells and tagged spans, so a number written into a sentence is
   outside it unless the sentence tags it
@@ -108,7 +116,7 @@ process" a measurement instead of an opinion.
 | `src/sentinel/exhibits.py` | The flat dictionary of every figure the book may print. |
 | `verify_book.py` | The gate. |
 | `book/index.html` | The pitch book. |
-| `tests/` | 64 tests, including the gate's own failure modes. |
+| `tests/` | 72 tests, including the gate's own failure modes. |
 
 ## Running it
 
@@ -117,7 +125,7 @@ pytest and ruff, and nothing else is needed.
 
 ```bash
 pip install -e ".[dev]"
-pytest                 # 64 tests
+pytest                 # 72 tests
 ruff check .
 python verify_book.py  # the gate
 ```

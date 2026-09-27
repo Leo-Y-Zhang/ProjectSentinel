@@ -93,6 +93,43 @@ class TestGateBehaviour:
         finally:
             BOOK.write_text(original, encoding="utf-8")
 
+    def test_a_figure_on_an_element_the_gate_cannot_read_turns_it_red(self):
+        """The tag pattern reads span, td, strong and b. A data-model attribute
+        on any other element -- a th, a div, an em -- used to be skipped without
+        a word, so its figure could say anything: this wrong value on a th
+        passed, with the gate quietly reporting one figure fewer."""
+        original = BOOK.read_text(encoding="utf-8")
+        cell = '<td class="num" data-model="su.tlb" data-fmt="1dp">1,450.0</td>'
+        assert cell in original, "anchor for the mutation was not found"
+        broken = original.replace(
+            cell, '<th class="num" data-model="su.tlb" data-fmt="1dp">9,999.9</th>')
+        BOOK.write_text(broken, encoding="utf-8")
+        try:
+            assert run_gate() == 1
+        finally:
+            BOOK.write_text(original, encoding="utf-8")
+
+    @pytest.mark.parametrize("attr", [
+        "data-model='su.tlb'",
+        'data-model = "su.tlb"',
+        'DATA-MODEL="su.tlb"',
+        "data-model=su.tlb",
+    ])
+    def test_a_tag_spelt_other_than_the_canonical_way_turns_it_red(self, attr):
+        """A browser reads every one of these as the same data-model attribute,
+        but the tag pattern only matches data-model="...". Each of them, with a
+        wrong value, used to pass the gate: the figure dropped out of the count
+        and nothing said so."""
+        original = BOOK.read_text(encoding="utf-8")
+        cell = 'data-model="su.tlb" data-fmt="1dp">1,450.0<'
+        assert cell in original, "anchor for the mutation was not found"
+        BOOK.write_text(original.replace(cell, f'{attr} data-fmt="1dp">9,999.9<'),
+                        encoding="utf-8")
+        try:
+            assert run_gate() == 1
+        finally:
+            BOOK.write_text(original, encoding="utf-8")
+
     def test_a_book_with_nothing_tagged_fails_rather_than_passes(self):
         """The most important test here. If the tags were ever stripped, a naive
         gate would report success having checked nothing at all."""
@@ -131,6 +168,30 @@ class TestCoverage:
         tagged = set(re.findall(r'data-model="(prec\.[^"]+)"', html))
         assert tagged == {f"prec.{i}.{col}" for i in range(len(PRECEDENTS))
                           for col in ("tev", "ev_rev", "ev_ebitda", "premium_pct")}
+
+    def test_the_football_fields_modelled_bars_are_gated(self):
+        """The README names the DCF, comparables and precedent bars as gated.
+        The last two were printed untagged until the model's own values were
+        wired to them, so both ends of all four bars are pinned here."""
+        import re
+
+        html = BOOK.read_text(encoding="utf-8")
+        tagged = set(re.findall(
+            r'data-model="(val\.(?:dcf_perp|dcf_exit|comps|precedent)_(?:low|high))"', html))
+        assert tagged == {f"val.{bar}_{end}"
+                          for bar in ("dcf_perp", "dcf_exit", "comps", "precedent")
+                          for end in ("low", "high")}
+
+    def test_the_price_sweeps_premium_column_is_gated_row_by_row(self):
+        """"Attributable to premium" was typed as the difference of the two
+        rounded GAAP percentages beside it, which put all five cells 0.1pp away
+        from the model: (0.7%) printed where the model gives (0.6%)."""
+        import re
+
+        from sentinel.exhibits import PRICE_SWEEP
+        html = BOOK.read_text(encoding="utf-8")
+        tagged = set(re.findall(r'data-model="(sweep\.px\d+\.premium_effect_pct)"', html))
+        assert tagged == {f"sweep.px{int(p)}.premium_effect_pct" for p in PRICE_SWEEP[1:]}
 
     def test_no_gated_figure_is_repeated_in_a_tooltip(self):
         """A number copied into a title attribute is outside the gate: the tag
